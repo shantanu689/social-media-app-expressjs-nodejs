@@ -5,8 +5,10 @@ const port = 8080;
 
 const app = express();
 
-app.use(express.static("./assets"));
+app.use(express.urlencoded());
+app.use(cookieParser());
 
+app.use(express.static("./assets"));
 app.use("/", require("./routes/index"));
 
 app.set("view engine", "ejs");
