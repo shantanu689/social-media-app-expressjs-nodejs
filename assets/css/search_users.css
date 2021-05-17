@@ -1,0 +1,25 @@
+#display-users {
+  margin-top: 10%;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center; }
+  #display-users #search-users-list {
+    padding: 4%;
+    width: 50%;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4); }
+    #display-users #search-users-list .search-user-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2%;
+      border-radius: 10px;
+      margin-bottom: 1%; }
+      #display-users #search-users-list .search-user-card div {
+        padding: 2%; }
+        #display-users #search-users-list .search-user-card div h6 {
+          margin-left: 10px; }
+    #display-users #search-users-list .search-user-card:hover {
+      background-color: #f0f2f5; }

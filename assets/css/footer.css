@@ -1,0 +1,12 @@
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(40deg, #2a2829, #807aff);
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 6%; }
+  footer h6 {
+    margin: 0; }

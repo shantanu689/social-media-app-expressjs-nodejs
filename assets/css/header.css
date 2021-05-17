@@ -1,0 +1,39 @@
+header {
+  width: 100%;
+  background: linear-gradient(40deg, #ff6ec4, #7873f5);
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: sans-serif;
+  padding-left: 2%;
+  padding-right: 2%; }
+  header #search-user form {
+    display: flex;
+    margin: auto; }
+    header #search-user form input {
+      padding: 1% !important; }
+    header #search-user form button {
+      background: none;
+      border: none; }
+  header .routes .profile-nav {
+    border-radius: 40px;
+    padding: 2%; }
+  header .routes .profile-nav:hover {
+    background-color: #f0f2f5;
+    cursor: pointer; }
+  header a {
+    text-decoration: none;
+    color: black; }
+  header .nav-text {
+    font-size: small; }
+
+header span {
+  font-size: 2rem;
+  font-weight: bold; }
+
+header div {
+  font-size: 1.2rem; }

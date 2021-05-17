@@ -1,0 +1,26 @@
+#main-header {
+  padding: 2%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 45vh;
+  background: linear-gradient(40deg, #ff6ec4, #7873f5); }
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%; }
+  section #my-image {
+    height: 12rem;
+    width: 12rem;
+    margin: auto;
+    margin-top: -17vh;
+    margin-bottom: 2rem; }
+  section #my-image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: solid 3px white;
+    box-shadow: 0 0 10px 6px lightgray; }

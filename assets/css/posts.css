@@ -1,0 +1,46 @@
+#new-comment .make-comment {
+  padding: 2%;
+  width: 30%;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 0 !important;
+  text-decoration: none; }
+
+#new-comment .make-comment:hover {
+  color: #1877f2; }
+
+#new-comment .add-comment-button {
+  padding: 2%;
+  background: none;
+  border: none;
+  border-radius: 10px; }
+
+#new-comment .toggle-like-button {
+  padding: 2%;
+  text-decoration: none;
+  color: black;
+  border-radius: 10px; }
+
+#new-comment .toggle-like-button:hover {
+  background-color: #f0f2f5;
+  color: #1877f2; }
+
+#new-comment #add-comment-button:hover {
+  background-color: #f0f2f5;
+  color: #1877f2; }
+
+#new-comment .border-bottom {
+  height: 1px;
+  width: 100%;
+  background-color: #f0f2f5;
+  margin-top: 2%;
+  margin-bottom: 2%; }
+
+.like-user-card {
+  padding: 2%;
+  border-radius: 10px;
+  color: black; }
+
+.like-user-card:hover {
+  background-color: #f0f2f5; }
