@@ -1,7 +1,11 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const port = 8080;
+// const db = require("./config/mongoose");
 
 const app = express();
+
+app.use(express.static("./assets"));
 
 app.use("/", require("./routes/index"));
 
