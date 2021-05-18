@@ -1,16 +1,24 @@
 const User = require("../models/user");
 
 module.exports.profile = (req, res) => {
-  res.end("<h1>User Profile</h1>");
+  res.render("user_profile");
 };
 
 module.exports.signUp = (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect("/users/profile");
+  }
+
   return res.render("user_sign_up", {
     title: "the hex | Sign Up",
   });
 };
 
 module.exports.signIn = (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect("/users/profile");
+  }
+
   return res.render("user_sign_in", {
     title: "the hex | Sign In",
   });
@@ -39,4 +47,6 @@ module.exports.create = (req, res) => {
   });
 };
 
-module.exports.createSession = (req, res) => {};
+module.exports.createSession = (req, res) => {
+  return res.redirect("/");
+};
