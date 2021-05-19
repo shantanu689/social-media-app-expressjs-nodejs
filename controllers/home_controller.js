@@ -1,3 +1,6 @@
 module.exports.home = (req, res) => {
-  return res.end("<h1>Express is up for the hex</h1>");
+  return res.render("home", {
+    title: "Home",
+    user: req.user,
+  });
 };
