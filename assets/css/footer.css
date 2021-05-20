@@ -1,0 +1,12 @@
+footer {
+  width: 100%;
+  position: fixed;
+  background-image: linear-gradient(to right, black, #7873f5);
+  height: 6%;
+  top: 94%; }
+  footer #footer-container {
+    font-weight: bold;
+    margin-left: 20%;
+    margin-right: 20%;
+    color: white;
+    height: 100%; }

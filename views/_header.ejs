@@ -1,27 +1,28 @@
 <header>
-  <a href="/">
+  <a href="/" id="logo">
     <span> &lt; the hex /&gt; </span>
   </a>
-  <ul>
-    <% if(locals.user) { %>
 
-    <li>
-      <a href="/users/profile"><%= user.name %></a>
-    </li>
-    <li>
-      <a href="/users/sign-out"> Sign Out </a>
-    </li>
+  <% if(locals.user) { %>
 
-    <% } else { %>
+  <li>
+    <a href="/users/profile"><%= user.name %></a>
+  </li>
+  <li>
+    <a href="/users/sign-out"> Sign Out </a>
+  </li>
 
-    <li>
-      <a href="/users/sign-in"> Sign In </a>
-    </li>
-
-    <li>
+  <% } else { %>
+  <div
+    class="d-flex p-2 justify-content-between align-items-center"
+    id="signup-signin"
+  >
+    <div id="signup">
       <a href="/users/sign-up"> Sign Up </a>
-    </li>
-
-    <% } %>
-  </ul>
+    </div>
+    <div id="signin">
+      <a href="/users/sign-in"> Sign In </a>
+    </div>
+  </div>
+  <% } %>
 </header>

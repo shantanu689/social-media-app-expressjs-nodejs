@@ -1,0 +1,25 @@
+header {
+  padding-left: 2%;
+  padding-right: 2%;
+  width: 100%;
+  font-family: sans-serif;
+  background-image: linear-gradient(to right, #ff6ec4, #7873f5);
+  display: flex;
+  justify-content: space-between; }
+  header #logo {
+    font-size: 2rem;
+    font-weight: bold; }
+  header #signup-signin {
+    font-weight: bold;
+    font-size: 14px;
+    width: 15%; }
+  header #signup {
+    padding: 4px; }
+  header #signin {
+    padding: 4px; }
+  header #signup:hover {
+    background-color: white;
+    border-radius: 40px; }
+  header #signin:hover {
+    background-color: white;
+    border-radius: 40px; }

@@ -1,6 +1,12 @@
+const Post = require("../models/post");
+
 module.exports.home = (req, res) => {
-  return res.render("home", {
-    title: "Home",
-    user: req.user,
-  });
+  Post.find({})
+    .populate("user")
+    .exec((err, posts) => {
+      return res.render("home", {
+        title: "the-hex | Home",
+        posts: posts,
+      });
+    });
 };

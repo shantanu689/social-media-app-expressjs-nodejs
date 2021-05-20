@@ -1,7 +1,12 @@
-<h1>Sign In</h1>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <h1>Welcome to &lt; the hex /&gt;</h1>
 
-<form action="/users/create-session" method="POST">
-  <input type="email" name="email" placeholder="Email" required />
-  <input type="password" name="password" placeholder="Password" required />
-  <button type="submit">Sign In</button>
-</form>
+  <form action="/users/create-session" method="POST">
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+  </form>
+</html>
