@@ -67,5 +67,5 @@ module.exports.createSession = (req, res) => {
 module.exports.destroySession = (req, res) => {
   req.logout();
   req.flash("success", "You have logged out!");
-  return res.redirect("/");
+  return res.redirect("/users/sign-in");
 };
