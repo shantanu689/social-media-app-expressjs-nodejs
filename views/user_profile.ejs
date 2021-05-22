@@ -1,9 +1,21 @@
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/css/user_profile.css" />
-  </head>
-  <body>
-    <h1>the-hex / Profile Page</h1>
-  </body>
-</html>
+<title>
+  <%= title %>
+</title>
+<link rel="stylesheet" href="/css/user_profile.css" />
+
+<h1>the-hex / Profile Page</h1>
+
+<% if(user.id==profile_user.id) { %>
+  <form action="/users/update/<%= profile_user.id %>" method="POST">
+    <input type="text" name="name" placeholder="Name" value="<%= profile_user.name %>" required>
+    <input type="email" name="email" placeholder="Email address" value="<%= profile_user.email %>" required>
+    <button type="submit"> Update </button>
+  </form>
+  <% } else { %>
+    <p>
+      <%= profile_user.name %>
+    </p>
+    <p>
+      <%= profile_user.email %>
+    </p>
+    <% } %>

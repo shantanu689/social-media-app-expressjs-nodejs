@@ -7,7 +7,9 @@ const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
 const MongoStore = require("connect-mongo");
 const sassMiddleware = require("node-sass-middleware");
-// const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
+const customMware = require("./config/middleware");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -22,7 +24,7 @@ app.use(
 );
 
 app.use(express.urlencoded());
-// app.use(cookieParser());
+app.use(cookieParser());
 app.use(express.static("./assets"));
 app.use(expressLayouts);
 
@@ -55,6 +57,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(customMware.setFlash);
 
 app.use("/", require("./routes/index"));
 

@@ -4,5 +4,8 @@ body {
     text-decoration: none;
     color: black; }
 
+#layout-main {
+  padding-top: 7vh; }
+
 .width-100 {
   width: 100%; }

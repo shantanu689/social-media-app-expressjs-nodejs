@@ -1,9 +1,9 @@
 <title>
   <%= title %>
 </title>
+<script src="/js/typewriter.js"></script>
 
 <div class="bg-galaxy body-div">
-
   <h1 class="text-enter">Welcome to &lt;the hex/&gt;!</h1>
 
   <form action="/users/create-session" method="POST" id="form-container"
@@ -25,4 +25,4 @@
   </form>
 </div>
 
-</html>
+<%- include('_footer') %>
