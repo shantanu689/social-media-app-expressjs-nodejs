@@ -12,6 +12,7 @@ module.exports.profile = (req, res) => {
 module.exports.update = (req, res) => {
   if (req.params.id == req.user.id) {
     User.findByIdAndUpdate(req.params.id, req.body, (err, user) => {
+      req.flash("success", "Your profile has been updated");
       return res.redirect("back");
     });
   } else {
@@ -51,9 +52,11 @@ module.exports.create = (req, res) => {
           console.log("Error in creating user while signing up");
           return;
         }
+        req.flash("success", "Signup successfull");
         return res.redirect("/users/sign-in");
       });
     } else {
+      req.flash("error", "Email-id already exists!");
       return res.redirect("back");
     }
   });
