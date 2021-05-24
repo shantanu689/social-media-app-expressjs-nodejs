@@ -2,6 +2,7 @@
   <%= title %>
 </title>
 <link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/post-container.css">
 
 <div id="home-container" class="d-flex justify-content-between">
   <section id="feed-posts">
@@ -11,14 +12,12 @@
         <input type="submit" value="Post" />
       </form>
 
-      <div id="posts-list-container">
-        <ul>
-          <% for(post of posts) { %>
+      <div class="posts-list-container">
+        <% for(post of posts) { %>
 
-            <%- include('_post.ejs') -%>
+          <%- include('_post.ejs') -%>
 
-              <% } %>
-        </ul>
+            <% } %>
       </div>
       <% } %>
   </section>

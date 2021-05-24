@@ -20,7 +20,7 @@
             timeout: 1500,
           }).show();
 
-          $("#posts-list-container>ul").prepend(newPost);
+          $(".posts-list-container").prepend(newPost);
           deletePost($(" .delete-post-button", newPost));
         },
         error: (error) => {
@@ -31,36 +31,44 @@
   };
 
   let newPostDOM = (post) => {
-    return $(`<li id="post-${post._id}">
-      <p>
-              <small>
-                  <a class="delete-post-button" href="/posts/destroy/${post._id}"> X </a>
-              </small>
+    return $(`<div id="post-${post._id}" class="card">
+    <div class="post-header d-flex justify-content-between">
+        <div class="post-username">
+            ${post.user.name}
+        </div>
+        <div>
+                <a class="delete-post-button" href="/posts/destroy/<%= post._id %>">
+                    <i class="fas fa-trash-alt blue-color" aria></i>
+                </a>
+        </div>
+    </div>
+    <span class="text-muted mb-2" style="margin-left: 50px;">
+        Fri Apr
+    </span>
+    <div class="post-content card-body bg-light">
+        ${post.content}
+    </div>
+    <div class="post-comments">
+            <form action="/comments/create" method="POST">
+                <input type="text" name="content" placeholder="Type here to comment..." required />
+                <input type="hidden" name="post" value="<%= post._id %>" />
+                <!-- Above line very imp check -->
+                <input type="submit" value="Add comment" />
+            </form>
 
-                   ${post.content}
-                      <br />
-                      <small>
-                          ${post.user.name}
-                      </small>
-      </>
-      <div class="post-comments">
+                <div class="post-comments-list">
+                    <ul id="post-comments-<%= post._id %>">
+                        <% for(comment of post.comments) { %>
 
-              <form action="/comments/create" method="POST">
-                  <input type="text" name="content" placeholder="Type here to comment..." required />
-                  <input type="hidden" name="post" value="${post._id}" />
-                  <input type="submit" value="Add comment" />
-              </form>
-  
-                  <div class="post-comments-list">
-                      <ul id="post-comments-${post._id}">
-                      
-                      </ul>
-                  </div>
-      </div>
-  </li>`);
+                            <%- include('_comment') -%>
+
+                                <% }%>
+                    </ul>
+                </div>
+    </div>
+</div>`);
   };
 
-  // method to delete a post
   let deletePost = (deleteLink) => {
     $(deleteLink).click((e) => {
       e.preventDefault();

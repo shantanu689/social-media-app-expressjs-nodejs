@@ -1,16 +1,22 @@
-<li id="post-<%= post._id %>">
-    <p>
-        <% if(locals.user && locals.user.id==post.user.id) { %>
-            <small>
-                <a class="delete-post-button" href="/posts/destroy/<%= post._id %>"> X </a>
-            </small>
-            <% } %>
-                <%= post.content %>
-                    <br />
-                    <small>
-                        <%= post.user.name %>
-                    </small>
-    </p>
+<div id="post-<%= post._id %>" class="card">
+    <div class="post-header d-flex justify-content-between">
+        <div class="post-username">
+            <%= post.user.name %>
+        </div>
+        <div>
+            <% if(locals.user && locals.user.id==post.user.id) { %>
+                <a class="delete-post-button" href="/posts/destroy/<%= post._id %>">
+                    <i class="fas fa-trash-alt blue-color" aria></i>
+                </a>
+                <% } %>
+        </div>
+    </div>
+    <span class="text-muted mb-2" style="margin-left: 50px;">
+        Fri Apr
+    </span>
+    <div class="post-content card-body bg-light">
+        <%= post.content %>
+    </div>
     <div class="post-comments">
         <% if(locals.user) { %>
             <form action="/comments/create" method="POST">
@@ -20,7 +26,6 @@
                 <input type="submit" value="Add comment" />
             </form>
             <% } %>
-
                 <div class="post-comments-list">
                     <ul id="post-comments-<%= post._id %>">
                         <% for(comment of post.comments) { %>
@@ -31,4 +36,4 @@
                     </ul>
                 </div>
     </div>
-</li>
+</div>
