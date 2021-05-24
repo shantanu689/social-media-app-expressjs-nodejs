@@ -4,6 +4,9 @@
   #feed-posts {
     width: 70%;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   #user-friends {
     width: 30%;

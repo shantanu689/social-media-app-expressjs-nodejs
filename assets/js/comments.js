@@ -1,6 +1,6 @@
 {
   // method to submit the form data for the post using ajax
-  let createPost = () => {
+  let createComment = () => {
     let newPostForm = $("#new-post-form");
 
     newPostForm.submit((e) => {
@@ -32,32 +32,32 @@
 
   let newPostDOM = (post) => {
     return $(`<li id="post-${post._id}">
-      <p>
-              <small>
-                  <a class="delete-post-button" href="/posts/destroy/${post._id}"> X </a>
-              </small>
-
-                   ${post.content}
-                      <br />
-                      <small>
-                          ${post.user.name}
-                      </small>
-      </>
-      <div class="post-comments">
-
-              <form action="/comments/create" method="POST">
-                  <input type="text" name="content" placeholder="Type here to comment..." required />
-                  <input type="hidden" name="post" value="${post._id}" />
-                  <input type="submit" value="Add comment" />
-              </form>
+        <p>
+                <small>
+                    <a class="delete-post-button" href="/posts/destroy/${post._id}"> X </a>
+                </small>
   
-                  <div class="post-comments-list">
-                      <ul id="post-comments-${post._id}">
-                      
-                      </ul>
-                  </div>
-      </div>
-  </li>`);
+                     ${post.content}
+                        <br />
+                        <small>
+                            ${post.user.name}
+                        </small>
+        </>
+        <div class="post-comments">
+  
+                <form action="/comments/create" method="POST">
+                    <input type="text" name="content" placeholder="Type here to comment..." required />
+                    <input type="hidden" name="post" value="${post._id}" />
+                    <input type="submit" value="Add comment" />
+                </form>
+    
+                    <div class="post-comments-list">
+                        <ul id="post-comments-${post._id}">
+                        
+                        </ul>
+                    </div>
+        </div>
+    </li>`);
   };
 
   // method to delete a post
@@ -86,5 +86,5 @@
     });
   };
 
-  createPost();
+  createComment();
 }

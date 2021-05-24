@@ -7,7 +7,7 @@ module.exports.create = async (req, res) => {
       content: req.body.content,
       user: req.user._id,
     });
-    req.flash("success", "Post published!");
+    // req.flash("success", "Post published!");
 
     if (req.xhr) {
       return res.status(200).json({
@@ -41,9 +41,9 @@ module.exports.destroy = async (req, res) => {
         });
       }
 
-      req.flash("success", "Post and associated comments deleted!");
-    } else {
-      req.flash("error", "You cannot delete this post!");
+      // req.flash("success", "Post and associated comments deleted!");
+      // } else {
+      // req.flash("error", "You cannot delete this post!");
     }
     return res.redirect("back");
   } catch (err) {

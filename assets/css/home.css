@@ -3,7 +3,10 @@
   height: 93%; }
   #home-container #feed-posts {
     width: 70%;
-    padding: 10px; }
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
   #home-container #user-friends {
     width: 30%;
     padding: 10px;
