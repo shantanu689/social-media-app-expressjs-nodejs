@@ -84,5 +84,14 @@
     });
   };
 
+  let homepageLoad = () => {
+    let posts = $(".card");
+    for (post of posts) {
+      console.log("in");
+      deletePost($(" .delete-post-button", post));
+    }
+  };
+
   createPost();
+  homepageLoad();
 }
