@@ -37,13 +37,13 @@
             ${post.user.name}
         </div>
         <div>
-                <a class="delete-post-button" href="/posts/destroy/<%= post._id %>">
+                <a class="delete-post-button" href="/posts/destroy/${post._id}">
                     <i class="fas fa-trash-alt blue-color" aria></i>
                 </a>
         </div>
     </div>
     <span class="text-muted mb-2" style="margin-left: 50px;">
-        Fri Apr
+        now
     </span>
     <div class="post-content card-body bg-light">
         ${post.content}
@@ -51,20 +51,10 @@
     <div class="post-comments">
             <form action="/comments/create" method="POST">
                 <input type="text" name="content" placeholder="Type here to comment..." required />
-                <input type="hidden" name="post" value="<%= post._id %>" />
+                <input type="hidden" name="post" value="${post._id}" />
                 <!-- Above line very imp check -->
                 <input type="submit" value="Add comment" />
             </form>
-
-                <div class="post-comments-list">
-                    <ul id="post-comments-<%= post._id %>">
-                        <% for(comment of post.comments) { %>
-
-                            <%- include('_comment') -%>
-
-                                <% }%>
-                    </ul>
-                </div>
     </div>
 </div>`);
   };
