@@ -10,6 +10,7 @@ const sassMiddleware = require("node-sass-middleware");
 const flash = require("connect-flash");
 const customMware = require("./config/middleware");
 const cookieParser = require("cookie-parser");
+const passportJWT = require("./config/passport-jwt-strategy");
 
 const app = express();
 
