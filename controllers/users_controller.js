@@ -83,6 +83,11 @@ module.exports.create = (req, res) => {
           console.log("Error in creating user while signing up");
           return;
         }
+        user.avatar = path.normalize(
+          path.join(User.avatarPath, "/", "default.jpg")
+        );
+        user.save();
+        console.log(user.avatar);
         req.flash("success", "Signup successfull");
         return res.redirect("/users/sign-in");
       });

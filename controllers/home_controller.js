@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const User = require("../models/user");
+const path = require("path");
 
 module.exports.home = async (req, res) => {
   try {

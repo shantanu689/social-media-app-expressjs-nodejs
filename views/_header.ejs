@@ -5,14 +5,25 @@
 
   <% if(locals.user) { %>
 
-    <li>
-      <a href="/users/profile/<%= user.id %>">
-        <%= user.name %>
-      </a>
-    </li>
-    <li>
-      <a href="/users/sign-out"> Sign Out </a>
-    </li>
+    <div class="d-flex justify-content-between" style="width: 63%; padding-right: 6%;">
+      <form action="/users/search" method="POST">
+        <input type="text" name="search_user" placeholder="Search user">
+        <button type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+      <div class="d-flex justify-content-between align-items-center" style="width: 26%; font-weight: bold;">
+        <div>
+          <a href="/users/profile/<%= user.id %>">
+            <img src="<%= user.avatar %>" width="40" height="40" style="border-radius: 50%;" alt="">
+            <span style="padding-left: 4px;">
+              <%= user.name %>
+            </span>
+          </a>
+        </div>
+        <a href="/users/sign-out"> Sign out </a>
+      </div>
+    </div>
 
     <% } else { %>
       <div class="d-flex p-2 justify-content-between align-items-center" id="signup-signin">
