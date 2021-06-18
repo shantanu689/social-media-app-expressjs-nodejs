@@ -87,7 +87,6 @@ module.exports.create = (req, res) => {
           path.join(User.avatarPath, "/", "default.jpg")
         );
         user.save();
-        console.log(user.avatar);
         req.flash("success", "Signup successfull");
         return res.redirect("/users/sign-in");
       });

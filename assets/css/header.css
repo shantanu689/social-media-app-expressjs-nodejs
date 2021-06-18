@@ -26,3 +26,7 @@ header {
   header #signin:hover {
     background-color: white;
     border-radius: 40px; }
+  header #search-user-form {
+    margin: 0px;
+    display: flex;
+    align-items: center; }

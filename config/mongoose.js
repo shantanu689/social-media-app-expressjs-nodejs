@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/the-hex");
+mongoose.connect("mongodb://localhost:27017/the-hex");
 
 var db = mongoose.connection;
 

@@ -5,17 +5,20 @@
 
   <% if(locals.user) { %>
 
-    <div class="d-flex justify-content-between" style="width: 63%; padding-right: 6%;">
-      <form action="/users/search" method="POST">
+    <div class="d-flex justify-content-between align-items-center" style="width: 63%; padding-right: 6%;">
+      <form action="/users/search" method="POST" id="search-user-form">
         <input type="text" name="search_user" placeholder="Search user">
-        <button type="submit">
-          <i class="fas fa-search"></i>
-        </button>
+        <i class="fas fa-search">
+          <!-- <button type="submit">
+          </button> -->
+        </i>
+
       </form>
-      <div class="d-flex justify-content-between align-items-center" style="width: 26%; font-weight: bold;">
+
+      <div class="d-flex justify-content-between" style="width: 26%; font-weight: bold;">
         <div>
           <a href="/users/profile/<%= user.id %>">
-            <img src="<%= user.avatar %>" width="40" height="40" style="border-radius: 50%;" alt="">
+            <!-- <img src="<%= user.avatar %>" width="40" height="40" style="border-radius: 50%;" alt=""> -->
             <span style="padding-left: 4px;">
               <%= user.name %>
             </span>
@@ -23,6 +26,7 @@
         </div>
         <a href="/users/sign-out"> Sign out </a>
       </div>
+
     </div>
 
     <% } else { %>
