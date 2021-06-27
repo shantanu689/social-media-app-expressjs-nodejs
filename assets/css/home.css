@@ -10,3 +10,25 @@
     width: 30%;
     padding: 10px;
     border-left: solid black 2px; }
+  #home-container .card {
+    width: 28rem;
+    border-radius: 20px;
+    box-shadow: lightgrey 5px 5px 10px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 50px;
+    background-color: white;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column; }
+    #home-container .card .post-header .post-username {
+      font-weight: 500;
+      font-size: 1.25rem; }
+    #home-container .card .post-header .delete-post-button {
+      color: blue; }
+    #home-container .card .post-header .delete-post-button:hover {
+      color: #5804b8; }
+    #home-container .card .post-content {
+      width: 95%;
+      border-radius: 30px;
+      word-wrap: break-word; }

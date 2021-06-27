@@ -13,4 +13,33 @@
     padding: 10px;
     border-left: solid black 2px;
   }
+  .card {
+    width: 28rem;
+    border-radius: 20px;
+    box-shadow: lightgrey 5px 5px 10px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 50px;
+    background-color: white;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    .post-header {
+      .post-username {
+        font-weight: 500;
+        font-size: 1.25rem;
+      }
+      .delete-post-button {
+        color: blue;
+      }
+      .delete-post-button:hover {
+        color: rgb(88, 4, 184);
+      }
+    }
+    .post-content {
+      width: 95%;
+      border-radius: 30px;
+      word-wrap: break-word;
+    }
+  }
 }

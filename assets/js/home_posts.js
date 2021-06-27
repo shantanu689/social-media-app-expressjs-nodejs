@@ -10,7 +10,7 @@
         url: "/posts/create",
         data: newPostForm.serialize(),
         success: (data) => {
-          let newPost = newPostDOM(data.data.post);
+          let newPost = newPostDOM(data.data.post,data.data.path);
 
           new Noty({
             theme: "relax",
@@ -30,10 +30,11 @@
     });
   };
 
-  let newPostDOM = (post) => {
+  let newPostDOM = (post,path) => {
     return $(`<div id="post-${post._id}" class="card">
     <div class="post-header d-flex justify-content-between">
         <div class="post-username">
+        <img src= ${path} width="50" height="50" style="border-radius: 50%;">
             ${post.user.name}
         </div>
         <div>
