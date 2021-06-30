@@ -1,7 +1,7 @@
 <div id="post-<%= post._id %>" class="card">
     <div class="post-header d-flex justify-content-between">
         <div class="post-username">
-            <img src="<%= user.avatar %>" width="50" height="50" style="border-radius: 50%;">
+            <img src="<%= post.user.avatar %>" width="50" height="50" style="border-radius: 50%;">
             <%= post.user.name %>
         </div>
         <div>

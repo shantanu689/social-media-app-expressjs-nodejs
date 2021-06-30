@@ -3,7 +3,7 @@
 </title>
 <link rel="stylesheet" href="/css/user_profile.css" />
 
-<img src="<%= user.avatar %>" alt="<%= user.name %>" width="100">
+<img src="<%= user.avatar %>" alt="<%= user.name %>" width="100" style="border-radius: 50%;">
 
 <% if(user.id==profile_user.id) { %>
   <form action="/users/update/<%= profile_user.id %>" enctype="multipart/form-data" method="POST">

@@ -32,8 +32,15 @@
   }
   #user-friends {
     width: 30%;
-    padding: 10px;
+    padding: 40px 0px 0px 0px;
     border-left: solid black 2px;
+    p {
+      padding: 2%;
+      background-color: greenyellow;
+    }
+    p:hover {
+      background-color: grey;
+    }
   }
   .card {
     width: 28rem;

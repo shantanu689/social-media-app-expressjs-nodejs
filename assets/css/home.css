@@ -27,8 +27,13 @@
       border: none; }
   #home-container #user-friends {
     width: 30%;
-    padding: 10px;
+    padding: 40px 0px 0px 0px;
     border-left: solid black 2px; }
+    #home-container #user-friends p {
+      padding: 2%;
+      background-color: greenyellow; }
+    #home-container #user-friends p:hover {
+      background-color: grey; }
   #home-container .card {
     width: 28rem;
     border-radius: 20px;
