@@ -4,18 +4,21 @@
 <link rel="stylesheet" href="/css/home.css">
 <link rel="stylesheet" href="/css/post-container.css">
 
-<div id="home-container" class="d-flex justify-content-between">
+<div id="home-container" class="d-flex justify-content-between vh-100">
   <section id="feed-posts">
     <% if(locals.user) { %>
-      <div class="card" style="margin-bottom: 0px; box-shadow: 0 4px 7px rgb(0,0,0,40%);">
-        <form action="/posts/create" method="POST" id="new-post-form">
-          <div class="d-flex align-items-center justify-content-between">
+      <div class="card pb-0" style="margin-bottom: 0px; box-shadow: 0 4px 7px rgb(0,0,0,40%);">
+        <form action="/posts/create" id="new-post-form" method="POST">
+          <div class="d-flex align-items-top justify-content-between">
             <img src="<%= user.avatar %>" width="50" height="50" style="border-radius: 50%;" alt="">
-            <textarea name="content" id="" cols="30" rows="3" placeholder="What's on your mind?" required></textarea>
+            <textarea name="content" id="textarea" cols="33" rows="1" placeholder="What's on your mind?"
+              required></textarea>
           </div>
-          <div>
-            <input type="file" placeholder="Image" name="image">
-            <input type="submit" value="Post" class="btn-primary rounded" />
+          <div class="d-flex justify-content-between py-2">
+            <label id="image" for="imageUpload">Image</label>
+            <input type="file" id="imageUpload" name="image" style="visibility:hidden">
+            <button type="submit" class="w-50 btn btn-outline-primary">Post</button>
+            <!-- <input type="submit" value="Post" class="btn-primary rounded" /> -->
           </div>
         </form>
       </div>
