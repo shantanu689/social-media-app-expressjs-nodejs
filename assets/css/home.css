@@ -26,14 +26,24 @@
       background: linear-gradient(40deg, #ff6ec4, #7873f5);
       border: none; }
   #home-container #user-friends {
-    width: 30%;
+    width: 25%;
+    margin-right: 5%;
+    position: relative;
     padding: 40px 0px 0px 0px;
     border-left: solid black 2px; }
-    #home-container #user-friends p {
+    #home-container #user-friends a {
+      display: block;
+      border: 1px solid gray;
       padding: 2%;
-      background-color: greenyellow; }
-    #home-container #user-friends p:hover {
-      background-color: grey; }
+      background-color: white;
+      transition: ease-in-out;
+      transition-duration: 0.3s; }
+    #home-container #user-friends a:hover {
+      background-color: #fac563;
+      margin-left: 7%;
+      border-radius: 12px;
+      font-weight: 600;
+      color: black; }
   #home-container .card {
     width: 28rem;
     border-radius: 20px;
