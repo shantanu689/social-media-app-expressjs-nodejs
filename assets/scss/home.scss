@@ -32,15 +32,24 @@
   }
   #user-friends {
     width: 25%;
+    min-height: 94vh;
     margin-right: 5%;
-    position: relative;
+    position: sticky;
+    top: 0;
     padding: 40px 0px 0px 0px;
     border-left: solid black 2px;
+    #friends-list {
+      position: sticky;
+      top: 10%;
+      height: 77vh;
+      overflow: scroll;
+    }
     a {
       display: block;
-      border: 1px solid rgb(128, 128, 128);
+      border: 2px solid rgb(36, 156, 236);
+      border-radius: 15px 50px 30px;
       padding: 2%;
-      background-color: rgb(255, 255, 255);
+      background-color: white;
       transition: ease-in-out;
       transition-duration: 0.3s;
     }
