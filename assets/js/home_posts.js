@@ -10,7 +10,7 @@
         url: "/posts/create",
         data: newPostForm.serialize(),
         success: (data) => {
-          let newPost = newPostDOM(data.data.post,data.data.path);
+          let newPost = newPostDOM(data.data.post, data.data.path);
 
           new Noty({
             theme: "relax",
@@ -22,6 +22,9 @@
 
           $(".posts-list-container").prepend(newPost);
           deletePost($(" .delete-post-button", newPost));
+          let postId = $(newPost).attr("id").split("-")[1];
+          // console.log(postId);
+          new Comment(postId);
         },
         error: (error) => {
           console.log(error.responseText);
@@ -30,7 +33,7 @@
     });
   };
 
-  let newPostDOM = (post,path) => {
+  let newPostDOM = (post, path) => {
     return $(`<div id="post-${post._id}" class="card">
     <div class="post-header d-flex justify-content-between">
         <div class="post-username">
@@ -50,12 +53,14 @@
         ${post.content}
     </div>
     <div class="post-comments">
-            <form action="/comments/create" method="POST">
+            <form id="new-comment-form-${post._id}" action="/comments/create" method="POST">
                 <input type="text" name="content" placeholder="Type here to comment..." required />
                 <input type="hidden" name="post" value="${post._id}" />
                 <!-- Above line very imp check -->
                 <input type="submit" value="Add comment" />
             </form>
+            <div id="comment-container-${post._id}">
+            </div>
     </div>
 </div>`);
   };
@@ -86,9 +91,13 @@
   };
 
   let homepageLoad = () => {
-    let posts = $(".card");
+    let posts = $(".posts-list-container>div");
     for (post of posts) {
-      console.log("in");
+      // console.log("in");
+      let self = $(post);
+      const postId = self.attr("id").split("-")[1];
+      // console.log(post_id)
+      new Comment(postId);
       deletePost($(" .delete-post-button", post));
     }
   };

@@ -20,21 +20,19 @@
     </div>
     <div class="post-comments">
         <% if(locals.user) { %>
-            <form action="/comments/create" method="POST">
+            <form id="new-comment-form-<%= post._id%>" action="/comments/create" method="POST">
                 <input type="text" name="content" placeholder="Type here to comment..." required />
                 <input type="hidden" name="post" value="<%= post._id %>" />
                 <!-- Above line very imp check -->
                 <input type="submit" value="Add comment" />
             </form>
             <% } %>
-                <div class="post-comments-list">
-                    <ul id="post-comments-<%= post._id %>">
-                        <% for(comment of post.comments) { %>
+                <div id="comment-container-<%= post._id %>">
+                    <% for(comment of post.comments) { %>
 
-                            <%- include('_comment') -%>
+                        <%- include('_comment') -%>
 
-                                <% }%>
-                    </ul>
+                            <% }%>
                 </div>
     </div>
 </div>

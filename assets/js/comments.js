@@ -1,90 +1,160 @@
-{
-  // method to submit the form data for the post using ajax
-  let createComment = () => {
-    let newPostForm = $("#new-post-form");
+class Comment {
+  constructor(postId) {
+    this.postId = postId;
+    this.postContainer = $(`#post-${this.postId}`);
+    // this.addCommentFormButton = $(`#add-comment-button-${this.postId}`);
+    // this.deleteCommentLink = this.addCommentForm(this.addCommentFormButton);
+    // this.commentsCount = $(`#comments-count-${this.postId}`);
+    // MINE
+    this.trackCommentSubmit = this.trackComment();
+    let self = this;
+    // $(" .delete-comment-button", this.postContainer).each(function () {
+    //   self.deleteComment(this);
+    // });
+  }
 
-    newPostForm.submit((e) => {
+  // createComment() {
+  //   let pSelf = this;
+
+  //   let commentForm = $(`#form-${this.postId}`);
+  //   commentForm.submit(function (e) {
+  //     e.preventDefault();
+  //     let self = this;
+
+  //     $.ajax({
+  //       type: "POST",
+  //       url: "/comments/create",
+  //       data: $(self).serialize(),
+  //       success: (data) => {
+  //         let newComment = pSelf.newCommentDom(data.data.comment);
+  //         $(`#comment-container-${pSelf.postId}`).prepend(newComment);
+  //         pSelf.deleteComment($(" .delete-comment-button", newComment));
+
+  //         new Noty({
+  //           theme: 'relax',
+  //           text: "Comment Created!",
+  //           type: 'success',
+  //           layout: 'topRight',
+  //           timeout: 1500
+            
+  //       }).show();
+
+  //         let comments = $(pSelf.commentsCount).attr("data-comment");
+  //         comments = parseInt(comments) + 1;
+  //         pSelf.commentsCount.empty();
+  //         pSelf.commentsCount.attr("data-comment", comments);
+  //         pSelf.commentsCount.append(comments);
+  //       },
+  //       error: (err) => {},
+  //     });
+  //   });
+  // }
+
+  // addCommentForm(addCommentForm) {
+  //   // let self = this;
+  //   // addCommentForm.click(function (e) {
+  //   //   e.preventDefault();
+  //   //   let commentFormContainer = $(
+  //   //     `#comment-form-container-${$(this).prop("value")}`
+  //   //   );
+  //   //   commentFormContainer.prepend(
+  //   //     self.commentFormDom(addCommentForm.prop("value"))
+  //   //   );
+  //   //   $(this).remove();
+  //   //   self.createComment();
+  //   //   self.deleteComment();
+  //   // });
+  //   self.createComment();
+  // }
+
+  trackComment() {
+    let pSelf = this;
+    console.log(this.postId)
+    let commentForm = $(`#new-comment-form-${this.postId}`);
+    commentForm.submit(function (e) {
       e.preventDefault();
+      let self = this;
+      console.log('inside')
       $.ajax({
-        type: "post",
-        url: "/posts/create",
-        data: newPostForm.serialize(),
+        type: "POST",
+        url: "/comments/create",
+        data: $(self).serialize(),
         success: (data) => {
-          let newPost = newPostDOM(data.data.post);
+          let newComment = pSelf.newCommentDom(data.data.comment);
+          $(`#comment-container-${pSelf.postId}`).prepend(newComment);
+          pSelf.deleteComment($(" .delete-comment-button", newComment));
 
           new Noty({
-            theme: "relax",
-            text: "Post published!",
-            type: "success",
-            layout: "topRight",
-            timeout: 1500,
-          }).show();
+            theme: 'relax',
+            text: "Comment Created!",
+            type: 'success',
+            layout: 'topRight',
+            timeout: 1500
+            
+        }).show();
 
-          $("#posts-list-container>ul").prepend(newPost);
-          deletePost($(" .delete-post-button", newPost));
+          // let comments = $(pSelf.commentsCount).attr("data-comment");
+          // comments = parseInt(comments) + 1;
+          // pSelf.commentsCount.empty();
+          // pSelf.commentsCount.attr("data-comment", comments);
+          // pSelf.commentsCount.append(comments);
         },
-        error: (error) => {
-          console.log(error.responseText);
-        },
+        error: (err) => {},
       });
     });
-  };
+  }
 
-  let newPostDOM = (post) => {
-    return $(`<li id="post-${post._id}">
-        <p>
-                <small>
-                    <a class="delete-post-button" href="/posts/destroy/${post._id}"> X </a>
-                </small>
-  
-                     ${post.content}
-                        <br />
-                        <small>
-                            ${post.user.name}
-                        </small>
-        </>
-        <div class="post-comments">
-  
-                <form action="/comments/create" method="POST">
-                    <input type="text" name="content" placeholder="Type here to comment..." required />
-                    <input type="hidden" name="post" value="${post._id}" />
-                    <input type="submit" value="Add comment" />
-                </form>
-    
-                    <div class="post-comments-list">
-                        <ul id="post-comments-${post._id}">
-                        
-                        </ul>
-                    </div>
-        </div>
-    </li>`);
-  };
-
-  // method to delete a post
-  let deletePost = (deleteLink) => {
-    $(deleteLink).click((e) => {
+  deleteComment(deleteLink) {
+    let pSelf = this;
+    $(deleteLink).click(function (e) {
       e.preventDefault();
 
       $.ajax({
         type: "get",
         url: $(deleteLink).prop("href"),
-        success: (data) => {
+        success: function (data) {
+          $(`#comment-${data.data.comment_id}`).remove();
+
           new Noty({
             theme: "relax",
-            text: "Post deleted",
+            text: "Comment Deleted",
             type: "success",
             layout: "topRight",
             timeout: 1500,
           }).show();
 
-          $(`#post-${data.data.post_id}`).remove();
+          // let comments = $(pSelf.commentsCount).attr("data-comment");
+          // comments = parseInt(comments) - 1;
+          // pSelf.commentsCount.empty();
+          // pSelf.commentsCount.attr("data-comment", comments);
+          // pSelf.commentsCount.append(comments);
         },
-        error: (error) => {
-          console.log(error.responseText);
-        },
+        error: function (error) {},
       });
     });
-  };
+  }
 
-  createComment();
+  // commentFormDom(id) {
+  //   return $(`
+  //     <form id='form-${id}' class="new-comment-form d-flex justify-content-between align-items-center" action="/comments/create" method="POST" style="width: 100%;">
+  //                 <input type="hidden" value="${id}" name="post">
+  //                 <textarea placeholder="Comment..."
+  //                     style=" outline: none;resize: none;background-color: #f0f2f5; border-radius: 40px; padding: 2%;"
+  //                     class="col-auto" name="comment" cols="30" rows="1"></textarea>
+  //                 <button class="make-comment" type="submit"> 
+  //                     <i class="far fa-comment-alt"></i>
+  //                 </button>
+  //             </form>
+  //     `);
+  // }
+
+  newCommentDom(comment) {
+    return $(`<div id='comment-${comment._id}'>
+            <a class="delete-comment-button" href="/comments/destroy/${comment._id}"> X </a>
+             ${comment.content}
+            <small>
+            ${comment.user.name}
+            </small>
+            </div>`)
+  }
 }
