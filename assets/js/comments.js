@@ -67,7 +67,8 @@ class Comment {
   //   self.createComment();
   // }
 
-  trackComment() {
+  trackComment() { 
+    // tracking comment
     let pSelf = this;
     console.log(this.postId)
     let commentForm = $(`#new-comment-form-${this.postId}`);
