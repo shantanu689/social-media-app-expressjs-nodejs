@@ -1,2 +1,6 @@
 1)Used nodemailer package for mailing system
 2) It uses SMTP(Simple Mail Transfer Protocol.) protocol for mailing
+
+packages - 
+nodemailer
+kue
