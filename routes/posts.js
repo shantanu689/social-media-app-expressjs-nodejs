@@ -10,5 +10,6 @@ router.get(
   passport.checkAuthentication,
   postsController.destroy
 );
+router.get('/show-likes/:id',passport.checkAuthentication,postsController.showLikes);
 
 module.exports = router;

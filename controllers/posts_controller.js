@@ -14,7 +14,7 @@ module.exports.create = async (req, res) => {
       return res.status(200).json({
         data: {
           post: post,
-          path: req.user.avatar
+          path: req.user.avatar,
         },
         message: "Post Created!",
       });
@@ -51,5 +51,27 @@ module.exports.destroy = async (req, res) => {
   } catch (err) {
     req.flash("Error", err);
     return;
+  }
+};
+
+module.exports.showLikes = async (req, res) => {
+  try {
+    let postId = req.params.id;
+    let post = await Post.findById(postId).populate({
+      path: "likes",
+    });
+    let likeUpdated = [];
+    for (like of post.likes) {
+      likeUpdated.push({
+        _id: like._id,
+        user: like.user,
+      });
+    }
+
+    return res.status(200).json({
+      likeUpdated,
+    });
+  } catch (error) {
+    console.log(error);
   }
 };
