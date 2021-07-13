@@ -1,3 +1,37 @@
 .posts-list-container {
   display: flex;
   flex-direction: column; }
+  .posts-list-container .comment-count:hover {
+    cursor: pointer;
+    text-decoration: underline; }
+  .posts-list-container .like-comment-bottom {
+    padding: 2px 10px 2px 10px;
+    border-style: solid;
+    border-color: #f0f2f5b6;
+    border-width: 2px 0px 2px 0px;
+    display: flex;
+    padding: 4px 0px 4px 0px;
+    justify-content: center;
+    align-items: center; }
+    .posts-list-container .like-comment-bottom .like {
+      cursor: pointer;
+      margin-right: 50px;
+      padding: 2%; }
+    .posts-list-container .like-comment-bottom .liked {
+      border-radius: 10px;
+      background-color: #f8f9fa;
+      color: blue; }
+    .posts-list-container .like-comment-bottom .not-liked {
+      background-color: white;
+      color: black; }
+    .posts-list-container .like-comment-bottom .not-liked:hover {
+      border-radius: 10px;
+      background-color: #f8f9fa;
+      color: blue; }
+    .posts-list-container .like-comment-bottom .comment {
+      cursor: pointer;
+      padding: 2%;
+      margin-left: 50px; }
+    .posts-list-container .like-comment-bottom .comment:hover {
+      border-radius: 10px;
+      background-color: #f8f9fa; }

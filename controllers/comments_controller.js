@@ -21,7 +21,7 @@ module.exports.create = async (req, res) => {
         })
         .execPopulate();
       // req.flash("success", "Comment published!");
-        commentsMailer.newComment(comment);
+        // commentsMailer.newComment(comment);
       if (req.xhr) {
         return res.status(200).json({
           data: {

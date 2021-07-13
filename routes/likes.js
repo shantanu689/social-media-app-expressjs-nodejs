@@ -6,6 +6,6 @@ const likeController = require('../controllers/likes_controller');
 
 
 
-router.get('/toggle',passport.checkAuthentication,likeController.toggleLike);
+router.get('/toggle/:post_id',passport.checkAuthentication,likeController.toggleLike);
 
 module.exports=router;

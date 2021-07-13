@@ -93,10 +93,9 @@
   let homepageLoad = () => {
     let posts = $(".posts-list-container>div");
     for (post of posts) {
-      // console.log("in");
       let self = $(post);
       const postId = self.attr("id").split("-")[1];
-      // console.log(post_id)
+      // console.log(postId)
       new Comment(postId);
       deletePost($(" .delete-post-button", post));
     }

@@ -23,6 +23,7 @@ module.exports.toggleLike = async (req, res) => {
       message: "Request Successful",
       data: {
         deleted: deleted,
+        likes: current_post.likes.length
       },
     });
   } catch (err) {
