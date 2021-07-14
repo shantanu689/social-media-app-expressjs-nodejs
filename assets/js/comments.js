@@ -9,7 +9,7 @@ class Comment {
     });
   }
 
-  trackComment() { 
+  trackComment() {
     // tracking comment
     let pSelf = this;
     // console.log(this.postId)
@@ -17,24 +17,24 @@ class Comment {
     commentForm.submit(function (e) {
       e.preventDefault();
       let self = this;
-      console.log('inside')
       $.ajax({
         type: "POST",
         url: "/comments/create",
         data: $(self).serialize(),
         success: (data) => {
           let newComment = pSelf.newCommentDom(data.data.comment);
-          $(`#comment-container-${pSelf.postId}`).prepend(newComment);
+          $(`#comment-container-${pSelf.postId} .list-comments`).append(
+            newComment
+          );
           pSelf.deleteComment($(" .delete-comment-button", newComment));
-
+          $(`#comments-count-${pSelf.postId}`).html(`${data.data.length}`);
           new Noty({
-            theme: 'relax',
+            theme: "relax",
             text: "Comment Created!",
-            type: 'success',
-            layout: 'topRight',
-            timeout: 1500
-            
-        }).show();
+            type: "success",
+            layout: "topRight",
+            timeout: 1500,
+          }).show();
         },
         error: (err) => {},
       });
@@ -51,7 +51,7 @@ class Comment {
         url: $(deleteLink).prop("href"),
         success: function (data) {
           $(`#comment-${data.data.comment_id}`).remove();
-
+          $(`#comments-count-${pSelf.postId}`).html(`${data.data.length}`);
           new Noty({
             theme: "relax",
             text: "Comment Deleted",
@@ -66,12 +66,31 @@ class Comment {
   }
 
   newCommentDom(comment) {
-    return $(`<div id='comment-${comment._id}'>
-            <a class="delete-comment-button" href="/comments/destroy/${comment._id}"> X </a>
-             ${comment.content}
-            <small>
-            ${comment.user.name}
-            </small>
-            </div>`)
+    return $(`<div
+    id="comment-${comment._id}"
+    class="d-flex align-items-start"
+    style="margin-bottom: 3%"
+  >
+    <img
+      src="${comment.user.avatar}"
+      width="40"
+      height="40"
+      style="border-radius: 50%"
+    />
+    <div class="all-comments-container">
+      <div class="comments-title">
+        <span style="font-weight: 600">${comment.user.name}</span>
+        <a
+          class="delete-comment-button"
+          style="color: blue; padding-top: 5px"
+          href="/comments/destroy/${comment._id}"
+        >
+          <i class="fas fa-trash-alt" aria></i>
+        </a>
+      </div>
+      <span>${comment.content}</span>
+    </div>
+  </div>
+  `);
   }
 }

@@ -1,47 +1,67 @@
-<title>
-  <%= title %>
-</title>
-<link rel="stylesheet" href="/css/home.css">
-<link rel="stylesheet" href="/css/post-container.css">
+<title><%= title %></title>
 
-<div id="home-container" class="d-flex justify-content-between ">
+
+<div id="home-container" class="d-flex justify-content-between">
   <section id="feed-posts">
     <% if(locals.user) { %>
-      <div class="card pb-0" style="margin-bottom: 0px; box-shadow: 0 4px 7px rgb(0,0,0,40%);">
-        <form action="/posts/create" id="new-post-form" method="POST">
-          <div class="d-flex align-items-top justify-content-between">
-            <img src="<%= user.avatar %>" width="60" height="60" style="border-radius: 50%;" alt="">
-            <textarea name="content" id="textarea" cols="33" rows="1" placeholder="What's on your mind?"
-              required></textarea>
-          </div>
-          <div class="d-flex justify-content-between py-2">
-            <label id="image" for="imageUpload">Image</label>
-            <input type="file" id="imageUpload" name="image" style="visibility:hidden">
-            <button type="submit" class="w-50 btn btn-outline-primary">Post</button>
-            <!-- <input type="submit" value="Post" class="btn-primary rounded" /> -->
-          </div>
-        </form>
-      </div>
+    <div
+      class="card pb-0"
+      style="margin-bottom: 0px; box-shadow: 0 4px 7px rgb(0, 0, 0, 40%)"
+    >
+      <form action="/posts/create" id="new-post-form" method="POST">
+        <div class="d-flex align-items-top justify-content-between">
+          <img
+            src="<%= user.avatar %>"
+            width="60"
+            height="60"
+            style="border-radius: 50%"
+          />
+          <textarea
+            name="content"
+            id="textarea"
+            cols="40"
+            rows="1"
+            placeholder="What's on your mind?"
+            required
+          ></textarea>
+        </div>
+        <div class="d-flex justify-content-between py-2">
+          <label id="image" for="imageUpload">Image</label>
+          <input
+            type="file"
+            id="imageUpload"
+            name="image"
+            style="visibility: hidden"
+          />
+          <button type="submit" class="w-50 btn btn-outline-primary">
+            Post
+          </button>
+          <!-- <input type="submit" value="Post" class="btn-primary rounded" /> -->
+        </div>
+      </form>
+    </div>
 
-      <div class="posts-list-container">
-        <% for(post of posts) { %>
-
-          <%- include('_post.ejs') -%>
-
-            <% } %>
-      </div>
-      <% } %>
+    <div class="posts-list-container">
+      <% for(post of posts) { %> <%- include('_post.ejs') -%> <% } %>
+    </div>
+    <% } %>
   </section>
 
   <section id="user-friends">
-    <h3 style="margin-bottom: 8%; padding-left: 18px;">Friends</h3>
+    <h3 style="margin-bottom: 8%; padding-left: 18px">Friends</h3>
     <div id="friends-list">
       <% for(u of all_users) { %>
-        <a href="/users/profile/<%= u.id %>">
-          <img src="<%= u.avatar %>" width="40" height="40" style="border-radius: 50%;" alt="">
-          <%= u.name %>
-        </a>
-        <% } %>
+      <a href="/users/profile/<%= u.id %>">
+        <img
+          src="<%= u.avatar %>"
+          width="40"
+          height="40"
+          style="border-radius: 50%"
+          alt=""
+        />
+        <%= u.name %>
+      </a>
+      <% } %>
     </div>
   </section>
 </div>

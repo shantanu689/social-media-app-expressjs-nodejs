@@ -25,6 +25,7 @@ passport.use(
             {
               name: profile.displayName,
               email: profile.emails[0].value,
+              avatar: profile._json.picture,
               password: crypto.randomBytes(20).toString("hex"),
             },
             (err, user) => {

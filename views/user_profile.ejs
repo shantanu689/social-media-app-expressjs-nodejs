@@ -1,23 +1,104 @@
-<title>
-  <%= title %>
-</title>
+<title><%= title %></title>
 <link rel="stylesheet" href="/css/user_profile.css" />
 
-<img src="<%= user.avatar %>" alt="<%= user.name %>" width="100" style="border-radius: 50%;">
+<div class="bg-gradient">
+  <!-- Button trigger modal -->
+  <% if(user.id==profile_user.id) { %>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    data-target="#editProfileModal"
+  >
+    <i class="fas fa-pen"></i>
+    <span>Edit Profile</span>
+  </button>
+  <% } %>
+</div>
 
-<% if(user.id==profile_user.id) { %>
-  <form action="/users/update/<%= profile_user.id %>" enctype="multipart/form-data" method="POST">
-    <input type="text" name="name" placeholder="Name" value="<%= profile_user.name %>" required>
-    <input type="email" name="email" placeholder="Email address" value="<%= profile_user.email %>" required>
-
-    <input type="file" name="avatar" placeholder="Profile Picture">
-    <button type="submit"> Update </button>
-  </form>
-  <% } else { %>
-    <p>
-      <%= profile_user.name %>
-    </p>
-    <p>
-      <%= profile_user.email %>
-    </p>
+<div id="main-content">
+  <img
+    id="profile-image"
+    src="<%= profile_user.avatar %>"
+    alt="<%= profile_user.name %>"
+  />
+  <span id="profile-name"> <%= profile_user.name %> </span>
+  <div id="home-container" class="d-flex justify-content-center">
+    <% if(posts.length===0) { %>
+    <span style="font-size: x-large">No posts to show</span>
     <% } %>
+    <div class="posts-list-container">
+      <% for(post of posts) { %> <%- include('_post.ejs') -%> <% } %>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div
+  class="modal fade"
+  id="editProfileModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          action="/users/update/<%=user.id%>"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <label for="name" class="form-label">Name</label>
+          <input
+            id="name"
+            class="form-control mb-3"
+            type="text"
+            name="name"
+            value="<%=user.name%>"
+            required
+          />
+
+          <label for="email" class="form-label">Email</label>
+          <input
+            id="email"
+            class="form-control mb-3"
+            type="email"
+            name="email"
+            value="<%=user.email%>"
+            required
+          />
+
+          <label for="avatar" class="form-label">Profile Picture</label>
+          <input
+            id="avatar"
+            class="form-control mb-3"
+            type="file"
+            name="avatar"
+            id=""
+          />
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

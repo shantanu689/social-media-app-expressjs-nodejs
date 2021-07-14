@@ -26,6 +26,7 @@ module.exports.create = async (req, res) => {
         return res.status(200).json({
           data: {
             comment: comment,
+            length: post.comments.length
           },
           message: "Comment created!",
         });
@@ -52,6 +53,7 @@ module.exports.destroy = async (req, res) => {
         return res.status(200).json({
           data: {
             comment_id: req.params.id,
+            length: post.comments.length-1
           },
           message: "Comment deleted",
         });

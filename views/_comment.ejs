@@ -1,12 +1,29 @@
-<div id="comment-<%= comment.id %>">
-    <p>
-        <% if(locals.user && locals.user.id==comment.user.id) { %>
-
-            <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>"> X </a>
-            <% } %>
-                <%= comment.content %>
-                    <small>
-                        <%= comment.user.name %>
-                    </small>
-    </p>
+<div
+  id="comment-<%= comment.id %>"
+  class="d-flex align-items-start"
+  style="margin-bottom: 3%"
+>
+  <div style="height: 40px; width: 40px">
+    <img
+      src="<%= comment.user.avatar %>"
+      width="40"
+      height="40"
+      style="border-radius: 50%"
+    />
+  </div>
+  <div class="all-comments-container">
+    <div class="comments-title">
+      <span style="font-weight: 600"><%= comment.user.name %></span>
+      <% if(user.id==comment.user.id) { %>
+      <a
+        class="delete-comment-button"
+        style="color: blue; padding-top: 5px"
+        href="/comments/destroy/<%= comment.id %>"
+      >
+        <i class="fas fa-trash-alt" aria></i>
+      </a>
+      <% } %>
+    </div>
+    <span><%= comment.content %> </span>
+  </div>
 </div>

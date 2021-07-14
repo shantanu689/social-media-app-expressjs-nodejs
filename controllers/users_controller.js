@@ -1,13 +1,27 @@
 const User = require("../models/user");
+const Post = require("../models/post")
 const fs = require("fs");
 const path = require("path");
 
 module.exports.profile = (req, res) => {
   User.findById(req.params.id, (err, user) => {
-    res.render("user_profile", {
-      title: "User Profile",
-      profile_user: user,
-    });
+    Post.find({ user: user._id })
+      .sort("-createdAt")
+      .populate("user")
+      .populate({
+        path: "comments",
+        populate: {
+          path: "user",
+        },
+      })
+      .populate("likes")
+      .exec((err, posts) => {
+        return res.render("user_profile", {
+          profile_user: user,
+          posts: posts,
+          title: "Profile"
+        });
+      });
   });
 };
 

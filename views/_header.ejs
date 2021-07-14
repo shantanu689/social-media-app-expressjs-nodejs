@@ -5,38 +5,60 @@
 
   <% if(locals.user) { %>
 
-    <div class="d-flex justify-content-between align-items-center" style="width: 63%; padding-right: 6%;">
-      <form action="/users/search" method="POST" id="search-user-form">
-        <input type="text" name="search_user" placeholder="Search user" style="margin-right: 2%;" class="rounded">
-        <i class="fas fa-search">
-          <!-- <button type="submit">
+  <div
+    class="d-flex justify-content-between align-items-center"
+    style="width: 63%; padding-right: 6%"
+  >
+    <form action="/users/search" method="POST" id="search-user-form">
+      <input
+        type="text"
+        name="search_user"
+        placeholder="Search user"
+        style="margin-right: 2%"
+        class="rounded"
+      />
+      <i class="fas fa-search">
+        <!-- <button type="submit">
           </button> -->
-        </i>
+      </i>
+    </form>
 
-      </form>
-
-      <div class="d-flex justify-content-between align-items-center" style="width: 30%; font-weight: bold;">
-        <div>
-          <a href="/users/profile/<%= user.id %>" class="d-flex align-items-center">
-            <img src="<%= user.avatar %>" width="40" height="40" style="border-radius: 50%;" alt="">
-            <span style="padding-left: 7px;">
-              <%= user.name.split(' ')[0] %>
-            </span>
-          </a>
-        </div>
-        <a href="/users/sign-out"> Sign out </a>
+    <div
+      class="d-flex justify-content-between align-items-center"
+      style="width: 30%; font-weight: bold"
+    >
+      <div>
+        <a
+          href="/users/profile/<%= user.id %>"
+          class="d-flex align-items-center"
+        >
+          <img
+            src="<%= user.avatar %>"
+            width="40"
+            height="40"
+            style="border-radius: 50%"
+            alt=""
+          />
+          <span style="padding-left: 7px">
+            <%= user.name.split(' ')[0] %>
+          </span>
+        </a>
       </div>
-
+      <a href="/users/sign-out"> Sign out </a>
     </div>
+  </div>
 
-    <% } else { %>
-      <div class="d-flex p-2 justify-content-between align-items-center" id="signup-signin">
-        <div id="signup">
-          <a href="/users/sign-up"> Sign Up </a>
-        </div>
-        <div id="signin">
-          <a href="/users/sign-in"> Sign In </a>
-        </div>
-      </div>
-      <% } %>
+  <% } else { %>
+  <div
+    class="d-flex p-2 justify-content-between align-items-center"
+    id="signup-signin"
+  >
+    <div id="signup">
+      <a href="/users/sign-up"> Sign Up </a>
+    </div>
+    <div id="signin">
+      <a href="/users/sign-in"> Sign In </a>
+    </div>
+  </div>
+  <% } %>
 </header>

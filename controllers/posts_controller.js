@@ -7,14 +7,14 @@ module.exports.create = async (req, res) => {
       content: req.body.content,
       user: req.user._id,
     });
-    // req.flash("success", "Post published!");
+    
     await post.populate("user").execPopulate();
-
+    let time = post.createdAt.toDateString();
     if (req.xhr) {
       return res.status(200).json({
         data: {
           post: post,
-          path: req.user.avatar,
+          time
         },
         message: "Post Created!",
       });
