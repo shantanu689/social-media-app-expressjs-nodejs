@@ -1,0 +1,29 @@
+
+
+<% if(locals.user) { %>
+
+    
+
+
+    <div id='chat-box'>
+        <div id='chat-header' >
+            
+            <div id='chat-header-info' class="d-flex align-items-center justify-content-between">
+                <span id="chat-text-header">Chat</span>
+                <i class="fas fa-chevron-circle-up"></i>
+            </div>
+        </div>
+        <div id='chat-box-popup'>
+            <ul id='chat-message-list'>
+            </ul>
+            <div id="chat-message-input-container">
+                <input id='message' type="text" name="message" value="" placeholder="Enter Message...">
+                <button id='send-message'>Send</button>
+            </div>
+        </div>
+    </div>
+    
+    <% } %>
+    
+    
+  
