@@ -9,6 +9,15 @@ header {
   background-image: linear-gradient(to right, #ff6ec4, #7873f5);
   display: flex;
   justify-content: space-between;
+  #header-user-info:hover {
+    background-color: white;
+    border-radius: 34px;
+    padding-right: 7px;
+  }
+  #header-sign-out:hover {
+    border-radius: 34px;
+    background-color: white;
+  }
   #logo {
     font-size: 2rem;
     font-weight: bold;
@@ -18,19 +27,19 @@ header {
     font-size: 14px;
     width: 15%;
   }
-  #signup {
-    padding: 4px;
-  }
-  #signin {
-    padding: 4px;
-  }
+  // #signup {
+  //   padding: 4px;
+  // }
+  // #signin {
+  //   padding: 4px;
+  // }
   #signup:hover {
     background-color: white;
-    border-radius: 40px;
+    border-radius: 34px;
   }
   #signin:hover {
     background-color: white;
-    border-radius: 40px;
+    border-radius: 34px;
   }
   #search-user-form {
     margin: 0px;

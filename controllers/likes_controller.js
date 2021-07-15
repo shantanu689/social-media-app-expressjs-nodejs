@@ -8,22 +8,22 @@ module.exports.toggleLike = async (req, res) => {
   try {
     let deleted = false;
 
-    let current_post = await Post.findById(req.params.post_id)
-    if(current_post.likes.indexOf(req.user._id)!==-1) {
-        current_post.likes.pull(req.user._id);
-        current_post.save();
-        deleted = true;
-    }
-    else {
-        current_post.likes.push(req.user._id)
-        current_post.save();
-        deleted = false;
+    let current_post = await Post.findById(req.params.post_id);
+    if (current_post.likes.indexOf(req.user._id) !== -1) {
+      current_post.likes.pull(req.user._id);
+      current_post.save();
+      deleted = true;
+    } else {
+      current_post.likes.push(req.user._id);
+      current_post.save();
+      deleted = false;
     }
     return res.status(200).json({
       message: "Request Successful",
       data: {
         deleted: deleted,
-        likes: current_post.likes.length
+        likes: current_post.likes.length,
+        user: { name: req.user.name, _id: req.user._id, avatar: req.user.avatar},
       },
     });
   } catch (err) {

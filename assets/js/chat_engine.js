@@ -21,23 +21,27 @@ class ChatEngine {
     let self = this;
 
     this.socket.on("connect", function () {
-      console.log("connection established using sockets");
-
       self.socket.emit("join_room", {
         user_email: self.userEmail,
+        user_name: self.userName,
+        user_avatar: self.userAvatar,
         chatroom: "the-hex",
       });
 
       self.socket.on("user_joined", function (data) {
-        console.log("a user joined ", data);
+        let newUserJoined = $(`
+                <li class='new-user-joined'>
+                    <img src="${data.user_avatar}" alt="" width="35" height="35" style="border-radius: 100px;">
+                    <span><b>${data.user_name}</b> joined the chat!</span>
+                </li>
+                `);
+        $("#chat-message-list").append(newUserJoined);
       });
     });
 
     //send a message on clicking the send message button
     $("#send-message").click(function () {
       let msg = $("#message").val();
-      console.log(msg);
-
       if (msg != "") {
         self.socket.emit("send_message", {
           message: msg,
@@ -50,8 +54,6 @@ class ChatEngine {
     });
 
     self.socket.on("receive_message", function (data) {
-      console.log("message received", data.message);
-
       let newMessage = $("<li>");
       let messageType = "other-message";
 

@@ -7,7 +7,7 @@
         height="50"
         style="border-radius: 50%"
       />
-      <%= post.user.name %>
+      <a href="/users/profile/<%= post.user._id %>"><%= post.user.name %></a>
     </div>
     <div>
       <% if(locals.user && locals.user.id==post.user.id) { %>
@@ -20,11 +20,18 @@
   <span class="text-muted mb-2" style="margin-left: 50px">
     <%= post.createdAt.toDateString() %>
   </span>
+  <% if(post.image) { %>
+  <div style="margin-bottom: 3.5%"><%= post.content %></div>
+  <img src="<%= post.image %>" alt="" width="full" height="auto" />
+  <% } else { %>
   <div class="post-content card-body bg-light"><%= post.content %></div>
+  <% } %>
   <div class="d-flex justify-content-between px-5 mt-4 pb-1 mb-2">
     <div>
       <span id="likes-count-<%= post._id %>"> <%= post.likes.length %> </span>
-      <i class="far fa-thumbs-up" style="color: blue"></i>
+      <a href="/" data-toggle="modal" data-target="#post-modal-<%=post._id%>">
+        <i class="far fa-thumbs-up" style="color: blue"></i>
+      </a>
     </div>
     <div class="comment-count">
       <span id="comments-count-<%= post._id %>">
@@ -36,7 +43,7 @@
   <div class="like-comment-bottom">
     <% if(post.likes.filter(like =>
     like._id.toString()===user._id.toString()).length>0) { %>
-    <div class="like liked" id="like-<%=post._id%>">
+    <div class="like liked" data-user="<%= user._id %>" id="like-<%=post._id%>">
       <i class="far fa-thumbs-up"></i>
       Like
     </div>
@@ -45,7 +52,7 @@
       Comment
     </div>
     <% } else { %>
-    <div class="like not-liked" id="like-<%=post._id%>">
+    <div class="like not-liked" data-user="<%= user._id %>" id="like-<%=post._id%>">
       <i class="far fa-thumbs-up"></i>
       Like
     </div>
@@ -92,6 +99,56 @@
         </button>
       </form>
       <% } %>
+    </div>
+  </div>
+</div>
+
+<!-- Like Modal -->
+
+<div
+  class="modal fade"
+  id="post-modal-<%=post._id%>"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Likes</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="display-like-user">
+          <% for(like of post.likes) { %>
+          <a
+            id="<%= like._id %>"
+            href="/users/profile/<%= like._id %>"
+            style="text-decoration: none"
+          >
+            <div
+              style="width: 100%"
+              class="d-flex justify-content-between mb-3 like-user-card"
+            >
+              <img
+                src="<%=like.avatar%>"
+                alt=""
+                width="35"
+                height="35"
+                style="border-radius: 100px"
+              />
+              <h6><%=like.name %></h6>
+            </div>
+          </a>
+
+          <% } %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

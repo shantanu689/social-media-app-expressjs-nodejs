@@ -1,5 +1,11 @@
 #home-container {
   width: 100%; }
+  #home-container .like-user-card {
+    padding: 2%;
+    border-radius: 10px;
+    color: black; }
+  #home-container .like-user-card:hover {
+    background-color: #f0f2f5; }
   #home-container #feed-posts {
     width: 70%;
     padding: 10px;
@@ -29,15 +35,13 @@
     width: 25%;
     min-height: 94vh;
     margin-right: 5%;
-    position: sticky;
-    top: 0;
+    position: fixed;
+    right: 0%;
     padding: 40px 0px 0px 0px;
     border-left: solid black 2px; }
     #home-container #user-friends #friends-list {
-      position: sticky;
-      top: 10%;
-      height: 77vh;
-      overflow: scroll; }
+      height: 70vh;
+      overflow-y: scroll; }
     #home-container #user-friends a {
       display: block;
       border: 2px solid #249cec;
@@ -53,7 +57,7 @@
       font-weight: 600;
       color: black; }
   #home-container .card {
-    width: 28rem;
+    width: 30rem;
     border-radius: 20px;
     box-shadow: lightgrey 5px 5px 10px;
     padding: 1rem;

@@ -26,14 +26,6 @@ module.exports.profile = (req, res) => {
 };
 
 module.exports.update = async (req, res) => {
-  // if (req.params.id == req.user.id) {
-  //   User.findByIdAndUpdate(req.params.id, req.body, (err, user) => {
-  //     req.flash("success", "Your profile has been updated");
-  //     return res.redirect("back");
-  //   });
-  // } else {
-  //   return res.status(401).send("Unauthorised");
-  // }
   if (req.params.id == req.user.id) {
     try {
       let user = await User.findByIdAndUpdate(req.params.id);
@@ -112,6 +104,7 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.createSession = (req, res) => {
+  console.log('in')
   req.flash("success", "Logged in Succesfully");
   return res.redirect("/");
 };
@@ -120,4 +113,34 @@ module.exports.destroySession = (req, res) => {
   req.logout();
   req.flash("success", "You have logged out!");
   return res.redirect("/users/sign-in");
+};
+
+module.exports.search = async (req, res) => {
+  try {
+    let users = await User.find({
+      name: { $regex: new RegExp(req.body.search_user, "i") },
+    }).sort("name");
+    let usersFields = [];
+    for (let user of users) {
+      usersFields.push({
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+      });
+    }
+    if (users.length) {
+      return res.render("search_users", {
+        title: "Search",
+        users: usersFields,
+      });
+    } else {
+      return res.render("search_users", {
+        title: "Search",
+        message: "No user(s) found",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };

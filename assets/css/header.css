@@ -9,6 +9,13 @@ header {
   background-image: linear-gradient(to right, #ff6ec4, #7873f5);
   display: flex;
   justify-content: space-between; }
+  header #header-user-info:hover {
+    background-color: white;
+    border-radius: 34px;
+    padding-right: 7px; }
+  header #header-sign-out:hover {
+    border-radius: 34px;
+    background-color: white; }
   header #logo {
     font-size: 2rem;
     font-weight: bold; }
@@ -16,16 +23,12 @@ header {
     font-weight: bold;
     font-size: 14px;
     width: 15%; }
-  header #signup {
-    padding: 4px; }
-  header #signin {
-    padding: 4px; }
   header #signup:hover {
     background-color: white;
-    border-radius: 40px; }
+    border-radius: 34px; }
   header #signin:hover {
     background-color: white;
-    border-radius: 40px; }
+    border-radius: 34px; }
   header #search-user-form {
     margin: 0px;
     display: flex;

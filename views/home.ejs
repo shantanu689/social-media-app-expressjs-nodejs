@@ -1,6 +1,5 @@
 <title><%= title %></title>
 
-
 <div id="home-container" class="d-flex justify-content-between">
   <section id="feed-posts">
     <% if(locals.user) { %>
@@ -8,7 +7,12 @@
       class="card pb-0"
       style="margin-bottom: 0px; box-shadow: 0 4px 7px rgb(0, 0, 0, 40%)"
     >
-      <form action="/posts/create" id="new-post-form" method="POST">
+      <form
+        action="/posts/create"
+        id="new-post-form"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         <div class="d-flex align-items-top justify-content-between">
           <img
             src="<%= user.avatar %>"
