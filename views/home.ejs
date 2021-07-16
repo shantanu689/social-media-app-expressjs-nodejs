@@ -15,7 +15,7 @@
       >
         <div class="d-flex align-items-top justify-content-between">
           <img
-            src="<%= user.avatar %>"
+            src="/images/<%= user.avatar %>"
             width="60"
             height="60"
             style="border-radius: 50%"
@@ -57,7 +57,7 @@
       <% for(u of all_users) { %>
       <a href="/users/profile/<%= u.id %>">
         <img
-          src="<%= u.avatar %>"
+          src="/images/<%= u.avatar %>"
           width="40"
           height="40"
           style="border-radius: 50%"

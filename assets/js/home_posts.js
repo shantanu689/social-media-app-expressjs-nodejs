@@ -76,7 +76,7 @@
                 class="d-flex justify-content-between mb-3 like-user-card"
               >
                 <img
-                  src="${user.avatar}"
+                  src="/images/${user.avatar}"
                   alt="${user.name}"
                   width="35"
                   height="35"
@@ -99,11 +99,12 @@
   };
 
   let newPostDomIfImageNotPresent = (post, time) => {
+    console.log('called')
     return $(`<div id="post-${post._id}" class="card">
     <div class="post-header d-flex justify-content-between">
       <div class="post-username">
         <img
-          src="${post.user.avatar}"
+          src="/images/${post.user.avatar}"
           width="50"
           height="50"
           style="border-radius: 50%"
@@ -155,7 +156,7 @@
         >
           <div class="d-flex justify-content-start align-items-top">
             <img
-              src="${post.user.avatar}"
+              src="/images/${post.user.avatar}"
               width="50"
               height="50"
               style="border-radius: 50%; margin-right: 4%"
@@ -218,7 +219,7 @@
     <div class="post-header d-flex justify-content-between">
       <div class="post-username">
         <img
-          src="${post.user.avatar}"
+          src="/images/${post.user.avatar}"
           width="50"
           height="50"
           style="border-radius: 50%"
@@ -237,7 +238,7 @@
     <div style="margin-bottom: 3.5%;">
       ${post.content}
     </div>
-    <img src="${post.image}" alt="" width="full" height="auto">
+    <img src="/images/${post.image}" alt="" width="full" height="auto">
     <div class="d-flex justify-content-between px-5 mt-4 pb-1 mb-2">
       <div>
         <span id="likes-count-${post._id}"> ${post.likes.length} </span>
@@ -271,7 +272,7 @@
         >
           <div class="d-flex justify-content-start align-items-top">
             <img
-              src="${post.user.avatar}"
+              src="/images/${post.user.avatar}"
               width="50"
               height="50"
               style="border-radius: 50%; margin-right: 4%"

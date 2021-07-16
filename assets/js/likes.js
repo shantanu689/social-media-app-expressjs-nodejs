@@ -29,7 +29,7 @@
                 class="d-flex justify-content-between mb-3 like-user-card"
               >
                 <img
-                  src="${user.avatar}"
+                  src="/images/${user.avatar}"
                   alt="${user.name}"
                   width="35"
                   height="35"

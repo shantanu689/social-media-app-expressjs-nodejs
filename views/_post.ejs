@@ -2,7 +2,7 @@
   <div class="post-header d-flex justify-content-between">
     <div class="post-username">
       <img
-        src="<%= post.user.avatar %>"
+        src="/images/<%= post.user.avatar %>"
         width="50"
         height="50"
         style="border-radius: 50%"
@@ -22,7 +22,7 @@
   </span>
   <% if(post.image) { %>
   <div style="margin-bottom: 3.5%"><%= post.content %></div>
-  <img src="<%= post.image %>" alt="" width="full" height="auto" />
+  <img src="/images/<%= post.image %>" alt="" width="full" height="auto" />
   <% } else { %>
   <div class="post-content card-body bg-light"><%= post.content %></div>
   <% } %>
@@ -52,7 +52,11 @@
       Comment
     </div>
     <% } else { %>
-    <div class="like not-liked" data-user="<%= user._id %>" id="like-<%=post._id%>">
+    <div
+      class="like not-liked"
+      data-user="<%= user._id %>"
+      id="like-<%=post._id%>"
+    >
       <i class="far fa-thumbs-up"></i>
       Like
     </div>
@@ -75,7 +79,7 @@
       >
         <div class="d-flex justify-content-start align-items-top">
           <img
-            src="<%= user.avatar %>"
+            src="/images/<%= user.avatar %>"
             width="50"
             height="50"
             style="border-radius: 50%; margin-right: 4%"
@@ -136,7 +140,7 @@
               class="d-flex justify-content-between mb-3 like-user-card"
             >
               <img
-                src="<%=like.avatar%>"
+                src="/images/<%=like.avatar%>"
                 alt=""
                 width="35"
                 height="35"

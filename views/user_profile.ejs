@@ -19,7 +19,7 @@
 <div id="main-content">
   <img
     id="profile-image"
-    src="<%= profile_user.avatar %>"
+    src="/images/<%= profile_user.avatar %>"
     alt="<%= profile_user.name %>"
   />
   <span id="profile-name"> <%= profile_user.name %> </span>
@@ -84,7 +84,6 @@
             class="form-control mb-3"
             type="file"
             name="avatar"
-            id=""
           />
 
           <div class="modal-footer">

@@ -31,7 +31,7 @@ class ChatEngine {
       self.socket.on("user_joined", function (data) {
         let newUserJoined = $(`
                 <li class='new-user-joined'>
-                    <img src="${data.user_avatar}" alt="" width="35" height="35" style="border-radius: 100px;">
+                    <img src="/images/${data.user_avatar}" alt="" width="35" height="35" style="border-radius: 100px;">
                     <span><b>${data.user_name}</b> joined the chat!</span>
                 </li>
                 `);
@@ -64,7 +64,7 @@ class ChatEngine {
             <li class=${messageType}>
                 <span class="style-message">
                     <div class = "d-flex align-items-center">
-                        <img src="${data.user_avatar}" alt="" width="35" height="35" style="border-radius: 50%; margin-right:5%">
+                        <img src="/images/${data.user_avatar}" alt="" width="35" height="35" style="border-radius: 50%; margin-right:5%">
                         <h6>${data.user_name}</h6>
                     </div>
                     <p>${data.message}</p>

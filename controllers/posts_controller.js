@@ -1,36 +1,42 @@
 const Post = require("../models/post");
+const path = require("path");
+const fs = require("fs");
+const util = require("util");
+const unlinkFile = util.promisify(fs.unlink);
+
 const Comment = require("../models/comment");
+const aws_config = require("../config/aws-config");
 
 module.exports.create = async (req, res) => {
   try {
-    Post.uploadedImage(req, res, async (err) => {
-      if (err) {
-        console.log("*****MULTER ERROR*****", err);
-        return;
-      }
-      // console.log(req.file);
-      let post = await Post.create({
-        content: req.body.content,
-        user: req.user._id,
-      });
-      if(req.file) {
-        post.image = Post.imagePath + "/" + req.file.filename;
-        await post.save();
-      }
-      await post.populate("user").execPopulate();
-      let time = post.createdAt.toDateString();
-      if (req.xhr) {
-        return res.status(200).json({
-          data: {
-            post: post,
-            time,
-          },
-          message: "Post Created!",
-        });
-      }
-
-      return res.redirect("/");
+    const file = req.file;
+    let result;
+    if (file) {
+      result = await aws_config.uploadFile(file);
+      await unlinkFile(path.normalize(file.path));
+    }
+    else {
+      result = {Key: null}
+    }
+    let post = await Post.create({
+      content: req.body.content,
+      user: req.user._id,
+      image: result.Key,
     });
+    // if (req.file) post.image = req.file.location;
+    await post.populate("user").execPopulate();
+    let time = post.createdAt.toDateString();
+    if (req.xhr) {
+      return res.status(200).json({
+        data: {
+          post: post,
+          time,
+        },
+        message: "Post Created!",
+      });
+    }
+
+    return res.redirect("/");
   } catch (err) {
     req.flash("Error", err);
     return res.redirect("back");
@@ -41,6 +47,9 @@ module.exports.destroy = async (req, res) => {
   try {
     let post = await Post.findById(req.params.id);
     if (post.user == req.user.id) {
+      if(post.image) {
+        await aws_config.deleteFile(post.image);
+      }
       await post.remove();
       await Comment.deleteMany({ post: req.params.id });
 

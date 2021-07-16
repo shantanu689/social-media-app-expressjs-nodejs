@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const env = require("./config/environment");
+const s3 = require('./config/aws-config')
 const logger = require('morgan')
 const port = 8080;
 const expressLayouts = require("express-ejs-layouts");

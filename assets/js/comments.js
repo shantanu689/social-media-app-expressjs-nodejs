@@ -72,7 +72,7 @@ class Comment {
     style="margin-bottom: 3%"
   >
     <img
-      src="${comment.user.avatar}"
+      src="/images/${comment.user.avatar}"
       width="40"
       height="40"
       style="border-radius: 50%"

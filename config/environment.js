@@ -30,6 +30,10 @@ const production = {
   google_client_secret: process.env.GOOGLE_CLIENT_SECRET,
   google_call_back_url: process.env.GOOGLE_CALL_BACK_URL,
   jwt_secret: process.env.JWT_SECRET,
+  aws_bucket_name: process.env.AWS_BUCKET_NAME,
+  aws_bucket_region: process.env.BUCKET_REGION,
+  aws_secret_access: process.env.AWS_SECRET_ACCESS,
+  aws_access_key: process.env.AWS_ACCESS_KEY,
   morgan: {
     mode: 'combined',
     options: {stream: accessLogStream}

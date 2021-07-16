@@ -1,7 +1,11 @@
 const User = require("../models/user");
-const Post = require("../models/post")
+const Post = require("../models/post");
 const fs = require("fs");
 const path = require("path");
+const util = require("util");
+const unlinkFile = util.promisify(fs.unlink);
+
+const aws_config = require("../config/aws-config");
 
 module.exports.profile = (req, res) => {
   User.findById(req.params.id, (err, user) => {
@@ -19,7 +23,7 @@ module.exports.profile = (req, res) => {
         return res.render("user_profile", {
           profile_user: user,
           posts: posts,
-          title: "Profile"
+          title: "Profile",
         });
       });
   });
@@ -28,25 +32,20 @@ module.exports.profile = (req, res) => {
 module.exports.update = async (req, res) => {
   if (req.params.id == req.user.id) {
     try {
-      let user = await User.findByIdAndUpdate(req.params.id);
-      User.uploadedAvatar(req, res, (err) => {
-        if (err) {
-          console.log("***** Multer Error");
-        }
-        user.name = req.body.name;
-        user.email = req.body.email;
-        if (req.file) {
-          if (
-            user.avatar &&
-            fs.existsSync(path.join(__dirname, "..", user.avatar))
-          ) {
-            fs.unlinkSync(path.join(__dirname, "..", user.avatar));
-          }
-          user.avatar = User.avatarPath+"/"+req.file.filename;
-        }
-        user.save();
-        return res.redirect("back");
-      });
+      const file = req.file;
+      let result;
+      if (file) {
+        result = await aws_config.uploadFile(file);
+        await unlinkFile(path.normalize(file.path));
+      } else {
+        result = { Key: null };
+      }
+      let user = await User.findById(req.params.id);
+      user.name = req.body.name;
+      user.email = req.body.email;
+      user.avatar = result.Key;
+      await user.save();
+      return res.redirect("back");
     } catch (err) {
       req.flash("error", err);
       return res.redirect("back");
@@ -104,7 +103,7 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.createSession = (req, res) => {
-  console.log('in')
+  console.log("in");
   req.flash("success", "Logged in Succesfully");
   return res.redirect("/");
 };
