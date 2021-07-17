@@ -24,6 +24,7 @@ module.exports.uploadFile = (file) => {
     Key: file.filename,
   };
   console.log("done and returning");
+  console.log(accessKeyId)
   s3.upload(uploadParams, (err, data) => {
     if (err) console.log(err);
     return data;
