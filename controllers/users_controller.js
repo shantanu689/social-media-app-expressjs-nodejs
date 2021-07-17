@@ -39,10 +39,10 @@ module.exports.update = async (req, res) => {
         result = await aws_config.uploadFile(file);
         await unlinkFile(path.normalize(file.path));
       } else {
-        result = { Key: null };
+        result = { Key: user.avatar };
       }
       let user = await User.findById(req.params.id);
-      if(user.avatar && user.avatar!= env.default_avatar) {
+      if(file && user.avatar!= env.default_avatar) {
         await aws_config.deleteFile(user.avatar)
       }
       user.name = req.body.name;
