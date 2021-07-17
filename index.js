@@ -20,10 +20,11 @@ const cookieParser = require("cookie-parser");
 const app = express();
 
 // Setup the chat server to be used with socket.io
-const chatServer = require("http").Server(app);
-const chatSockets = require("./config/chat_sockets").chatSockets(chatServer);
-chatServer.listen(5000);
-console.log("Chat server is listening on port 5000");
+const server = require('http').Server(app)
+// const chatServer = require("http").Server(app);
+const chatSockets = require("./config/chat_sockets").chatSockets(server);
+// chatServer.listen(5000);
+// console.log("Chat server is listening on port 5000");
 const path = require("path");
 
 if (env.name == "development") {
@@ -82,7 +83,7 @@ app.use(customMware.setFlash);
 
 app.use("/", require("./routes/index"));
 
-app.listen(port, (err) => {
+server.listen(port, (err) => {
   if (err) {
     console.log("Error in running the server: ", err);
     return;

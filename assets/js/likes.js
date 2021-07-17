@@ -18,6 +18,12 @@
             } else {
               $(likeButton[i]).removeClass("not-liked");
               $(likeButton[i]).addClass("liked");
+              let imagePath;
+              if(user.avatar.includes('http')) {
+                imagePath = user.avatar
+              } else {
+                imagePath = `/images/${user.avatar}`
+              }
               $(`#post-modal-${postId} .display-like-user`).append(`
               <a
               id="${user._id}"
@@ -29,7 +35,7 @@
                 class="d-flex justify-content-between mb-3 like-user-card"
               >
                 <img
-                  src="/images/${user.avatar}"
+                  src="${imagePath}"
                   alt="${user.name}"
                   width="35"
                   height="35"

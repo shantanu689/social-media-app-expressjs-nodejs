@@ -14,12 +14,21 @@
         enctype="multipart/form-data"
       >
         <div class="d-flex align-items-top justify-content-between">
+          <% if(user.avatar.includes('http')) { %>
+          <img
+            src="<%= user.avatar %>"
+            width="60"
+            height="60"
+            style="border-radius: 50%"
+          />
+          <% } else { %>
           <img
             src="/images/<%= user.avatar %>"
             width="60"
             height="60"
             style="border-radius: 50%"
           />
+          <% } %>
           <textarea
             name="content"
             id="textarea"
@@ -56,14 +65,21 @@
     <div id="friends-list">
       <% for(u of all_users) { %>
       <a href="/users/profile/<%= u.id %>">
+        <% if(u.avatar.includes('http')) { %>
+        <img
+          src="<%= u.avatar %>"
+          width="40"
+          height="40"
+          style="border-radius: 50%"
+        />
+        <% } else { %>
         <img
           src="/images/<%= u.avatar %>"
           width="40"
           height="40"
           style="border-radius: 50%"
-          alt=""
         />
-        <%= u.name %>
+        <% } %> <%= u.name %>
       </a>
       <% } %>
     </div>

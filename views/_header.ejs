@@ -30,6 +30,15 @@
           href="/users/profile/<%= user.id %>"
           class="d-flex align-items-center"
         >
+          <% if(user.avatar.includes('http')) { %>
+          <img
+            src="<%= user.avatar %>"
+            width="40"
+            height="40"
+            style="border-radius: 50%"
+            alt=""
+          />
+          <% } else { %>
           <img
             src="/images/<%= user.avatar %>"
             width="40"
@@ -37,6 +46,7 @@
             style="border-radius: 50%"
             alt=""
           />
+          <% } %>
           <span style="padding-left: 7px">
             <%= user.name.split(' ')[0] %>
           </span>

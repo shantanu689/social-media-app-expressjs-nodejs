@@ -34,6 +34,7 @@ const production = {
   aws_bucket_region: process.env.BUCKET_REGION,
   aws_secret_access: process.env.AWS_SECRET_ACCESS,
   aws_access_key: process.env.AWS_ACCESS_KEY,
+  default_avatar: 'a19c273ece7312ca2ce2c427d5204977',
   morgan: {
     mode: 'combined',
     options: {stream: accessLogStream}

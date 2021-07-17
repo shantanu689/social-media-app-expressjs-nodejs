@@ -13,6 +13,7 @@
         data: formData,
         success: (data) => {
           let newPost;
+          document.getElementById("new-post-form").reset();
           if (data.data.post.image) {
             newPost = newPostDomIfImagePresent(data.data.post, data.data.time);
             $("#posts-list-container").prepend(newPost);
@@ -65,6 +66,12 @@
                 } else {
                   $(element2).removeClass("not-liked");
                   $(element2).addClass("liked");
+                  let imagePath;
+                  if(user.avatar.includes('http')) {
+                    imagePath = user.avatar
+                  } else {
+                    imagePath = `/images/${user.avatar}`
+                  }
                   $(`#post-modal-${postId} .display-like-user`).append(`
               <a
               id="${user._id}"
@@ -76,7 +83,7 @@
                 class="d-flex justify-content-between mb-3 like-user-card"
               >
                 <img
-                  src="/images/${user.avatar}"
+                  src="${imagePath}"
                   alt="${user.name}"
                   width="35"
                   height="35"
@@ -99,12 +106,17 @@
   };
 
   let newPostDomIfImageNotPresent = (post, time) => {
-    console.log('called')
+    let imagePath;
+    if(post.user.avatar.includes('http')) {
+      imagePath = post.user.avatar
+    } else {
+      imagePath = `/images/${post.user.avatar}`
+    }
     return $(`<div id="post-${post._id}" class="card">
     <div class="post-header d-flex justify-content-between">
       <div class="post-username">
         <img
-          src="/images/${post.user.avatar}"
+          src="${imagePath}"
           width="50"
           height="50"
           style="border-radius: 50%"
@@ -156,7 +168,7 @@
         >
           <div class="d-flex justify-content-start align-items-top">
             <img
-              src="/images/${post.user.avatar}"
+              src="${imagePath}"
               width="50"
               height="50"
               style="border-radius: 50%; margin-right: 4%"
@@ -215,11 +227,17 @@
   };
 
   let newPostDomIfImagePresent = (post, time) => {
+    let imagePath;
+    if(post.user.avatar.includes('http')) {
+      imagePath = post.user.avatar
+    } else {
+      imagePath = `/images/${post.user.avatar}`
+    }
     return $(`<div id="post-${post._id}" class="card">
     <div class="post-header d-flex justify-content-between">
       <div class="post-username">
         <img
-          src="/images/${post.user.avatar}"
+          src="${imagePath}"
           width="50"
           height="50"
           style="border-radius: 50%"
@@ -272,7 +290,7 @@
         >
           <div class="d-flex justify-content-start align-items-top">
             <img
-              src="/images/${post.user.avatar}"
+              src="${imagePath}"
               width="50"
               height="50"
               style="border-radius: 50%; margin-right: 4%"

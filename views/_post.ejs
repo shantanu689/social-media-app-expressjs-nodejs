@@ -1,12 +1,21 @@
 <div id="post-<%= post._id %>" class="card">
   <div class="post-header d-flex justify-content-between">
     <div class="post-username">
+      <% if(post.user.avatar.includes('http')) { %>
+      <img
+        src="<%= post.user.avatar %>"
+        width="50"
+        height="50"
+        style="border-radius: 50%"
+      />
+      <% } else { %>
       <img
         src="/images/<%= post.user.avatar %>"
         width="50"
         height="50"
         style="border-radius: 50%"
       />
+      <% } %>
       <a href="/users/profile/<%= post.user._id %>"><%= post.user.name %></a>
     </div>
     <div>
@@ -78,12 +87,21 @@
         method="POST"
       >
         <div class="d-flex justify-content-start align-items-top">
+          <% if(user.avatar.includes('http')) { %>
+          <img
+            src="<%= user.avatar %>"
+            width="50"
+            height="50"
+            style="border-radius: 50%; margin-right: 4%"
+          />
+          <% } else { %>
           <img
             src="/images/<%= user.avatar %>"
             width="50"
             height="50"
             style="border-radius: 50%; margin-right: 4%"
           />
+          <% } %>
           <textarea
             name="content"
             cols="40"
@@ -139,13 +157,22 @@
               style="width: 100%"
               class="d-flex justify-content-between mb-3 like-user-card"
             >
+            <% if(like.avatar.includes('http')) { %>
               <img
-                src="/images/<%=like.avatar%>"
-                alt=""
+                src="<%= like.avatar %>"
                 width="35"
                 height="35"
                 style="border-radius: 100px"
               />
+              <% } else { %>
+                <img
+                  src="/images/<%=like.avatar%>"
+                  alt=""
+                  width="35"
+                  height="35"
+                  style="border-radius: 100px"
+                />
+              <% } %>
               <h6><%=like.name %></h6>
             </div>
           </a>

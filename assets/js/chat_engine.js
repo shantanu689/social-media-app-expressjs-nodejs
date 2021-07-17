@@ -10,7 +10,7 @@ class ChatEngine {
       timeout: 10000,
       transports: ["websocket"],
     };
-    this.socket = io.connect("http://localhost:5000", connectionOptions);
+    this.socket = io.connect("http://localhost:8080", connectionOptions);
 
     if (this.userEmail) {
       this.connectionHandler();
@@ -29,9 +29,15 @@ class ChatEngine {
       });
 
       self.socket.on("user_joined", function (data) {
+        let imagePath;
+        if(data.user_avatar.includes('http')) {
+          imagePath = data.user_avatar
+        } else {
+          imagePath = `/images/${data.user_avatar}`
+        }
         let newUserJoined = $(`
                 <li class='new-user-joined'>
-                    <img src="/images/${data.user_avatar}" alt="" width="35" height="35" style="border-radius: 100px;">
+                    <img src="${imagePath}" alt="" width="35" height="35" style="border-radius: 100px;">
                     <span><b>${data.user_name}</b> joined the chat!</span>
                 </li>
                 `);
@@ -42,6 +48,7 @@ class ChatEngine {
     //send a message on clicking the send message button
     $("#send-message").click(function () {
       let msg = $("#message").val();
+      $('#message').val('')
       if (msg != "") {
         self.socket.emit("send_message", {
           message: msg,
@@ -60,11 +67,17 @@ class ChatEngine {
       if (data.user_email == self.userEmail) {
         messageType = "self-message";
       }
+      let imagePath;
+      if(data.user_avatar.includes('http')) {
+        imagePath = data.user_avatar
+      } else {
+        imagePath = `/images/${data.user_avatar}`
+      }
       newMessage = $(`
             <li class=${messageType}>
                 <span class="style-message">
                     <div class = "d-flex align-items-center">
-                        <img src="/images/${data.user_avatar}" alt="" width="35" height="35" style="border-radius: 50%; margin-right:5%">
+                        <img src="${imagePath}" alt="" width="35" height="35" style="border-radius: 50%; margin-right:5%">
                         <h6>${data.user_name}</h6>
                     </div>
                     <p>${data.message}</p>

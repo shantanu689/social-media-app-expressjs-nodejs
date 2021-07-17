@@ -1,34 +1,44 @@
-<div id='display-users'>
-    <div id='search-users-list'>
-
-        <% if(locals.message) {%>
-            <div class="d-flex align-items-center justify-content-center" style="width: 100%;">
-                <h4>
-                    <%= locals.message %>
-                </h4>
-            </div>
-
-            <% }else { %>
-                <h3>People</h3>
-                <% for ( user of users){%>
-                    
-                    <div class="search-user-card">
-                        <div class="d-flex align-items-center">
-                            <img src="<%=user.avatar%>" alt="" width="60" height="60" style="border-radius: 100px;">
-                            <h6>
-                                <%= user.name %>
-                            </h6>
-                        </div>
-                        <div>
-                            <a href="/users/profile/<%= user.id %>">
-                                <i class="far fa-eye"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="border-below"></div>
-
-                    <% } %>
-                        <% } %>
-
+<div id="display-users">
+  <div id="search-users-list">
+    <% if(locals.message) {%>
+    <div
+      class="d-flex align-items-center justify-content-center"
+      style="width: 100%"
+    >
+      <h4><%= locals.message %></h4>
     </div>
+
+    <% }else { %>
+    <h3>People</h3>
+    <% for ( view_user of users){%>
+
+    <div class="search-user-card">
+      <div class="d-flex align-items-center">
+        <% if(view_user.avatar.includes('http')) { %>
+        <img
+          src="<%= view_user.avatar %>"
+          width="60"
+          height="60"
+          style="border-radius: 100px"
+        />
+        <% } else { %>
+        <img
+          src="/images/<%=view_user.avatar%>"
+          width="60"
+          height="60"
+          style="border-radius: 100px"
+        />
+        <% } %>
+        <h6><%= view_user.name %></h6>
+      </div>
+      <div>
+        <a href="/users/profile/<%= view_user.id %>">
+          <i class="far fa-eye" style="height: 40%"></i>
+        </a>
+      </div>
+    </div>
+    <div class="border-below"></div>
+
+    <% } %> <% } %>
+  </div>
 </div>

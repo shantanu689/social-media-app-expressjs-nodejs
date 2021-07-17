@@ -63,10 +63,14 @@
     span {
       width: 70%;
       padding: 7px;
-      padding-bottom: 3px;
+      padding-bottom: 0px;
       display: inline-block;
       word-break: break-word;
       background-color: white;
+      p {
+        margin-top: 1%;
+        margin-bottom: 3%;
+      }
     }
   }
 

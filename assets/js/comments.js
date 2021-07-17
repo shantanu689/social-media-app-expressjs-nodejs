@@ -66,13 +66,19 @@ class Comment {
   }
 
   newCommentDom(comment) {
+    let imagePath;
+    if(comment.user.avatar.includes('http')) {
+      imagePath = comment.user.avatar
+    } else {
+      imagePath = `/images/${comment.user.avatar}`
+    }
     return $(`<div
     id="comment-${comment._id}"
     class="d-flex align-items-start"
     style="margin-bottom: 3%"
   >
     <img
-      src="/images/${comment.user.avatar}"
+      src="${imagePath}"
       width="40"
       height="40"
       style="border-radius: 50%"

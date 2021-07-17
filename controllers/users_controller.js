@@ -5,6 +5,7 @@ const path = require("path");
 const util = require("util");
 const unlinkFile = util.promisify(fs.unlink);
 
+const env = require('../config/environment')
 const aws_config = require("../config/aws-config");
 
 module.exports.profile = (req, res) => {
@@ -41,6 +42,9 @@ module.exports.update = async (req, res) => {
         result = { Key: null };
       }
       let user = await User.findById(req.params.id);
+      if(user.avatar && user.avatar!= env.default_avatar) {
+        await aws_config.deleteFile(user.avatar)
+      }
       user.name = req.body.name;
       user.email = req.body.email;
       user.avatar = result.Key;
@@ -88,9 +92,7 @@ module.exports.create = (req, res) => {
           console.log("Error in creating user while signing up");
           return;
         }
-        user.avatar = path.normalize(
-          path.join(User.avatarPath, "/", "default.jpg")
-        );
+        user.avatar = env.default_avatar
         user.save();
         req.flash("success", "Signup successfull");
         return res.redirect("/users/sign-in");
@@ -103,7 +105,6 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.createSession = (req, res) => {
-  console.log("in");
   req.flash("success", "Logged in Succesfully");
   return res.redirect("/");
 };

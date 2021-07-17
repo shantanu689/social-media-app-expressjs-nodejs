@@ -17,11 +17,19 @@
 </div>
 
 <div id="main-content">
+  <% if(profile_user.avatar.includes('http')) { %>
+  <img
+    id="profile-image"
+    src="<%= profile_user.avatar %>"
+    alt="<%= profile_user.name %>"
+  />
+  <% } else { %>
   <img
     id="profile-image"
     src="/images/<%= profile_user.avatar %>"
     alt="<%= profile_user.name %>"
   />
+  <% } %>
   <span id="profile-name"> <%= profile_user.name %> </span>
   <div id="home-container" class="d-flex justify-content-center">
     <% if(posts.length===0) { %>
