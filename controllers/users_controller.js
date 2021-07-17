@@ -35,7 +35,7 @@ module.exports.update = async (req, res) => {
     try {
       const file = req.file;
       let result;
-      console.log('inside')
+      let user = await User.findById(req.params.id);
       if (file) {
         result = await aws_config.uploadFile(file);
         await unlinkFile(path.normalize(file.path));
@@ -43,8 +43,6 @@ module.exports.update = async (req, res) => {
         console.log('no file')
         result = { Key: user.avatar };
       }
-      let user = await User.findById(req.params.id);
-      console.log('user found ', user)
       if(file && user.avatar!= env.default_avatar) {
         await aws_config.deleteFile(user.avatar)
       }
@@ -52,7 +50,6 @@ module.exports.update = async (req, res) => {
       user.email = req.body.email;
       user.avatar = result.Key;
       await user.save();
-      console.log('new user ', user)
       return res.redirect("back");
     } catch (err) {
       console.log(err);
