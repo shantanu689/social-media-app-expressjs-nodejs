@@ -2,7 +2,7 @@ const Post = require("../models/post");
 const path = require("path");
 const fs = require("fs");
 const util = require("util");
-const unlinkFile = util.promisify(fs.unlink);
+// const unlinkFile = util.promisify(fs.unlink);
 
 const Comment = require("../models/comment");
 const aws_config = require("../config/aws-config");
@@ -13,16 +13,18 @@ module.exports.create = async (req, res) => {
     let result;
     if (file) {
       result = await aws_config.uploadFile(file);
-      await unlinkFile(path.normalize(file.path));
+      // await unlinkFile(path.normalize(file.path));
     }
     else {
       result = {Key: null}
     }
+    console.log('started creating post')
     let post = await Post.create({
       content: req.body.content,
       user: req.user._id,
       image: result.Key,
     });
+    console.log('created post')
     // if (req.file) post.image = req.file.location;
     await post.populate("user").execPopulate();
     let time = post.createdAt.toDateString();
@@ -35,7 +37,7 @@ module.exports.create = async (req, res) => {
         message: "Post Created!",
       });
     }
-
+    console.log('returning now')
     return res.redirect("/");
   } catch (err) {
     req.flash("Error", err);
