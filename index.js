@@ -3,7 +3,7 @@ const express = require("express");
 const env = require("./config/environment");
 const s3 = require('./config/aws-config')
 const logger = require('morgan')
-const port = 8080;
+const port = process.env.PORT || 8080;
 const expressLayouts = require("express-ejs-layouts");
 const db = require("./config/mongoose");
 const session = require("express-session");
@@ -21,10 +21,8 @@ const app = express();
 
 // Setup the chat server to be used with socket.io
 const server = require('http').Server(app)
-// const chatServer = require("http").Server(app);
 const chatSockets = require("./config/chat_sockets").chatSockets(server);
-// chatServer.listen(5000);
-// console.log("Chat server is listening on port 5000");
+
 const path = require("path");
 
 if (env.name == "development") {
@@ -64,7 +62,7 @@ app.use(
     },
     store: MongoStore.create(
       {
-        mongoUrl: "mongodb://localhost:27017/the-hex",
+        mongoUrl: env.db_URI,
         autoRemove: "disabled",
       },
       (err) => {
