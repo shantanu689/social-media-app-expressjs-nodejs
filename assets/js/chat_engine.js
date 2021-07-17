@@ -10,7 +10,7 @@ class ChatEngine {
       timeout: 10000,
       transports: ["websocket"],
     };
-    this.socket = io.connect("http://localhost:8080", connectionOptions);
+    this.socket = io.connect("https://the-hex.herokuapp.com", connectionOptions);
 
     if (this.userEmail) {
       this.connectionHandler();
